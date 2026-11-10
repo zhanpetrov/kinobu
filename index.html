@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>KINOBU (木乃婦) — Food, Tradition, and Identity | A film by Chikara Motomura</title>
+  <meta name="description" content="KINOBU: Food, Tradition, and Identity (83 min, 4K) — A feature documentary by Chikara Motomura on Takuji Takahashi, third-generation chef-owner of Kyoto’s Michelin-starred Kinobu. Rent for $4.99 or download in 4K for $14.99.">
+
+  <!-- Open Graph / Social Preview -->
+  <meta property="og:type" content="video.movie">
+  <meta property="og:site_name" content="KINOBU">
+  <meta property="og:title" content="KINOBU (木乃婦) — Food, Tradition, and Identity">
+  <meta property="og:description" content="A film by Chikara Motomura · 83 min · Kyoto, Japan · Hawaiʻi International Film Festival Official Selection. Stream ($4.99) or Download 4K Master ($14.99).">
+  <meta property="og:image" content="assets/og-card.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="675">
+  <meta property="og:image:alt" content="Evening facade of Kinobu restaurant in downtown Kyoto">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="KINOBU (木乃婦) — Food, Tradition, and Identity">
+  <meta name="twitter:description" content="A feature documentary by Chikara Motomura on Kyoto’s Michelin-starred Kinobu. Rent $4.99 · Download $14.99.">
+  <meta name="twitter:image" content="assets/og-card.jpg">
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <meta name="theme-color" content="#090a0b">
+
+  <!-- Refined Japanese & Serif Accent Fonts paired with Apple SF System Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
+  <a class="skip-link" href="#watch" data-i18n="skip">Skip to watch options</a>
+
+  <!-- STICKY FROSTED-GLASS APPLE NAVIGATION BAR -->
+  <nav class="site-nav" aria-label="Primary">
+    <div class="site-nav-inner">
+      <a class="site-nav-brand" href="#top" aria-label="KINOBU Home">
+        <span class="brand-kanji" lang="ja">木乃婦</span>
+        <span class="brand-roman">KINOBU</span>
+      </a>
+
+      <div class="site-nav-links" id="site-nav-links">
+        <a href="#trailer" data-i18n="nav.trailer">Trailer</a>
+        <a href="#watch" data-i18n="nav.watch">Watch</a>
+        <a href="#film" data-i18n="nav.film">The Film</a>
+        <a href="#stills" data-i18n="nav.stills">Stills</a>
+        <a href="#director" data-i18n="nav.director">Filmmaker</a>
+        <a href="#screenings" data-i18n="nav.screenings">Screenings</a>
+        <a href="#credits" data-i18n="nav.credits">Credits</a>
+      </div>
+
+      <div class="site-nav-controls">
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button type="button" class="lang-btn is-active" data-set-lang="en" aria-pressed="true" lang="en">EN</button>
+          <button type="button" class="lang-btn" data-set-lang="ja" aria-pressed="false" lang="ja">日本語</button>
+        </div>
+
+        <a class="nav-watch-pill" href="#watch" data-i18n="nav.cta">Rent / Download</a>
+
+        <button
+          type="button"
+          class="menu-toggle"
+          id="menu-toggle"
+          aria-expanded="false"
+          aria-controls="site-nav-links"
+          data-i18n="nav.menu"
+        >Menu</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 1. APPLE TV+ CINEMA HERO & OFFICIAL 4K TRAILER -->
+  <header class="hero">
+    <div class="hero-ambient" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <div class="hero-header">
+        <div class="laurel-pill">
+          <span class="laurel-dot" aria-hidden="true"></span>
+          <span data-i18n="hero.laurel">Hawaiʻi International Film Festival · Official Selection 2025</span>
+        </div>
+
+        <h1 class="hero-title">
+          <span class="hero-title-kanji" lang="ja">木乃婦</span>
+          <span class="hero-title-roman">KINOBU</span>
+        </h1>
+
+        <p class="hero-subtitle" data-i18n="hero.subtitle">Food, Tradition, and Identity</p>
+        <p class="hero-byline" data-i18n="hero.byline">A film by Chikara Motomura</p>
+        <p class="hero-facts" data-i18n-html="hero.facts">
+          Feature Documentary &middot; <span class="nowrap">83 min</span> &middot; <span class="nowrap">4K Ultra HD</span> &middot; <span class="nowrap">Kyoto, Japan</span>
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn--hero-primary" href="#watch" data-hero-rent>
+            <span data-i18n="hero.ctaRent">Rent Film — $4.99</span>
+          </a>
+          <a class="btn btn--hero-secondary" href="#watch" data-hero-download>
+            <span data-i18n="hero.ctaDownload">Download 4K — $14.99</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Cinema Player Stage -->
+      <div class="trailer-stage" id="trailer">
+        <div class="cinema-frame" role="region" aria-label="KINOBU official trailer" data-i18n-aria="trailer.regionAria">
+          <div class="cinema-bar cinema-bar--top">
+            <div class="cinema-meta">
+              <span class="cinema-live-dot" aria-hidden="true"></span>
+              <span data-i18n="trailer.kicker">Official Trailer</span>
+              <span class="cinema-sep" aria-hidden="true">&middot;</span>
+              <span class="cinema-duration">02:32</span>
+            </div>
+
+            <div class="sub-toggle" role="group" aria-label="Trailer subtitle version" data-i18n-aria="trailer.subGroupAria">
+              <button
+                type="button"
+                class="sub-btn is-active"
+                data-trailer-ver="en"
+                aria-pressed="true"
+                data-i18n="trailer.subEn"
+              >EN Subtitles</button>
+              <button
+                type="button"
+                class="sub-btn"
+                data-trailer-ver="ja"
+                aria-pressed="false"
+                data-i18n="trailer.subJa"
+              >Original · No Sub</button>
+            </div>
+          </div>
+
+          <div class="cinema-screen" id="trailer-screen">
+            <video
+              id="trailer-video"
+              src="assets/trailer-en.mp4"
+              poster="assets/trailer-poster.jpg"
+              preload="metadata"
+              playsinline
+              controls
+            ></video>
+            <button
+              type="button"
+              class="cinema-play-overlay"
+              id="trailer-play-btn"
+              aria-label="Play official trailer"
+              data-i18n-aria="trailer.playAria"
+            >
+              <span class="cinema-play-pill">
+                <span class="cinema-play-icon" aria-hidden="true"></span>
+                <span data-i18n="trailer.playLabel">Play Trailer</span>
+              </span>
+            </button>
+          </div>
+
+          <div class="cinema-bar cinema-bar--bottom" aria-hidden="true">
+            <span data-i18n="trailer.captionLeft">Kyō-ryōri Kinobu · Shinmachi-dōri, Kyoto</span>
+            <span data-i18n="trailer.captionRight">23.976 fps · Stereo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN APPLE EDITORIAL CONTENT -->
+  <main class="page-main" id="main-content">
+
+    <!-- 2. WATCH — RENT ($4.99) & DOWNLOAD ($14.99) -->
+    <section class="section" id="watch" aria-labelledby="heading-watch">
+      <div class="section-intro">
+        <p class="section-eyebrow" data-i18n="watch.eyebrow">01 · Digital Release</p>
+        <h2 class="section-title" id="heading-watch" data-i18n="watch.heading">Watch Kinobu at Home.</h2>
+        <p class="section-lead" data-i18n="watch.lead">
+          Stream the complete 83-minute documentary instantly, or download the master edition to keep in your personal cinema library.
+        </p>
+      </div>
+
+      <div class="tickets-grid">
+        <!-- Tier 1: Rent Film ($4.99) -->
+        <article class="ticket-card" data-tier="rent">
+          <div class="ticket-body">
+            <div class="ticket-badge-row">
+              <span class="ticket-pill" data-i18n="watch.rentBadge">48-Hour Rental</span>
+            </div>
+
+            <div class="ticket-top">
+              <h3 class="ticket-label" data-tier-label>Rent Film</h3>
+              <span class="ticket-price" data-tier-price>$4.99</span>
+            </div>
+
+            <p class="ticket-terms" data-tier-terms>
+              48-hour streaming pass in up to 4K Ultra HD. Includes both English-subtitled and original Japanese editions.
+            </p>
+
+            <ul class="ticket-features">
+              <li data-i18n="watch.rentFeat1">Instant 83-minute feature stream in up to 4K Ultra HD</li>
+              <li data-i18n="watch.rentFeat2">48-hour viewing window from moment of purchase</li>
+              <li data-i18n="watch.rentFeat3">Switch between English subtitles &amp; original Japanese</li>
+              <li data-i18n="watch.rentFeat4">Watch on Mac, PC, iPhone, iPad, or AirPlay</li>
+            </ul>
+          </div>
+
+          <div class="ticket-action">
+            <div data-tier-slot>
+              <button type="button" class="btn btn--ticket is-disabled" disabled aria-disabled="true">Rent Film — $4.99</button>
+            </div>
+            <p class="ticket-status" data-tier-status data-i18n="watch.soon">Stripe checkout opens soon</p>
+          </div>
+        </article>
+
+        <!-- Tier 2: Download Film ($14.99) -->
+        <article class="ticket-card ticket-card--featured" data-tier="download">
+          <div class="ticket-body">
+            <div class="ticket-badge-row">
+              <span class="ticket-pill ticket-pill--accent" data-i18n="watch.downloadBadge">Digital Ownership · 4K Master</span>
+            </div>
+
+            <div class="ticket-top">
+              <h3 class="ticket-label" data-tier-label>Download Film</h3>
+              <span class="ticket-price" data-tier-price>$14.99</span>
+            </div>
+
+            <p class="ticket-terms" data-tier-terms>
+              Digital ownership with unlimited streaming plus direct 4K Ultra HD MP4 download (23.976 fps, English-subtitled &amp; unsubtitled masters).
+            </p>
+
+            <ul class="ticket-features">
+              <li data-i18n="watch.dlFeat1">Unlimited on-demand streaming in the Screening Room</li>
+              <li data-i18n="watch.dlFeat2">Direct DRM-free 4K MP4 download (3840×2160 · 23.976 fps)</li>
+              <li data-i18n="watch.dlFeat3">Includes both English-subtitled &amp; unsubtitled Japanese files</li>
+              <li data-i18n="watch.dlFeat4">Yours to keep permanently for offline viewing</li>
+            </ul>
+          </div>
+
+          <div class="ticket-action">
+            <div data-tier-slot>
+              <button type="button" class="btn btn--ticket-featured is-disabled" disabled aria-disabled="true">Download Film — $14.99</button>
+            </div>
+            <p class="ticket-status" data-tier-status data-i18n="watch.soon">Stripe checkout opens soon</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="checkout-trust-bar">
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <rect x="4" y="9" width="12" height="8" rx="2.2" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M6.5 9V6.5a3.5 3.5 0 0 1 7 0V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span data-i18n="watch.stripeNote">Encrypted checkout powered by Stripe · Apple Pay, Google Pay &amp; all major cards</span>
+        </div>
+        <a class="screening-room-link" href="watch.html" data-i18n="watch.enterRoom">Already have a Screening Pass? Enter Screening Room &rarr;</a>
+      </div>
+    </section>
+
+    <!-- 3. THE FILM — EPIGRAPH, SYNOPSIS, PILLARS & OFFICIAL POSTER -->
+    <section class="section" id="film" aria-labelledby="heading-film">
+      <div class="section-intro">
+        <p class="section-eyebrow" data-i18n="film.eyebrow">02 · The Story</p>
+        <h2 class="section-title" id="heading-film" data-i18n="film.heading">Intensity and Serenity in the Heart of Kyoto.</h2>
+      </div>
+
+      <blockquote class="kyoto-epigraph">
+        <p data-i18n-html="film.epigraph">
+          “As you enter from the busy street of downtown Kyoto, you experience the serenity of Kinobu.<br>
+          You pass through a long narrow corridor to be greeted by staff, where you take off your shoes, and are led to a private room with a garden view.”
+        </p>
+      </blockquote>
+
+      <p class="logline" data-i18n="film.logline">
+        Takuji Takahashi, the maverick chef-owner of an acclaimed Kyoto restaurant, brings disciplined intensity and calm precision into his high-pressure kitchen, crafting traditional dishes that are as delicate as they are inventive.
+      </p>
+
+      <div class="prose">
+        <p data-i18n="film.p1">
+          The film centers on Takuji Takahashi, the third-generation chef-owner of Kinobu—a Michelin-starred ryōtei in downtown Kyoto—who honors the centuries-old roots of Japanese kaiseki cuisine while boldly reimagining its future. A practitioner of Noh, Japan’s oldest theatrical art, for over twenty years, Takahashi brings its Simultaneous discipline of intensity and calm precision into his high-pressure kitchen.
+        </p>
+        <p data-i18n="film.p2">
+          As a certified sommelier, Takahashi also collaborates with a leading Japanese winemaker to craft wines tailored specifically to the subtle umami of dashi and seasonal Kyoto ingredients. Immersive and intimate, the documentary reveals how culinary art, Noh performance, Gion Festival heritage, and seasonal presentation intertwine to express Japanese aesthetic sensibility and identity.
+        </p>
+      </div>
+
+      <!-- Three Bento Pillars mirroring the poster's FOOD / TRADITION / IDENTITY -->
+      <div class="pillars-grid">
+        <article class="pillar-card">
+          <span class="pillar-kanji" lang="ja">食</span>
+          <h3 class="pillar-title" data-i18n="film.pillar1Title">Food</h3>
+          <p class="pillar-copy" data-i18n="film.pillar1Copy">
+            Seasonal Kyoto kaiseki where razor-thin katsuramuki knife work, luminous dashi, and unconventional wine pairings honor centuries of craft while pushing Japanese cuisine forward.
+          </p>
+        </article>
+
+        <article class="pillar-card">
+          <span class="pillar-kanji" lang="ja">伝統</span>
+          <h3 class="pillar-title" data-i18n="film.pillar2Title">Tradition</h3>
+          <p class="pillar-copy" data-i18n="film.pillar2Copy">
+            Over two decades of Kongō-school Noh training teach Takahashi to hold stillness and fire in the same breath—guiding a bustling brigade without raising his voice.
+          </p>
+        </article>
+
+        <article class="pillar-card">
+          <span class="pillar-kanji" lang="ja">心</span>
+          <h3 class="pillar-title" data-i18n="film.pillar3Title">Identity</h3>
+          <p class="pillar-copy" data-i18n="film.pillar3Copy">
+            Rooted in Kyoto’s Shinmachi neighborhood and the centuries-old Gion Festival Iwatoyama community, Kinobu becomes a living mirror of cultural continuity.
+          </p>
+        </article>
+      </div>
+
+      <!-- Official Poster + Specs Bento Showcase -->
+      <div class="poster-showcase">
+        <figure class="poster-card">
+          <img
+            id="hero-poster-img"
+            src="assets/poster.jpg"
+            alt="KINOBU — Official Film Poster designed by Raffa Motomura"
+            data-i18n-alt="film.posterAlt"
+            width="1400"
+            height="2100"
+            loading="lazy"
+          >
+        </figure>
+
+        <div class="specs-card">
+          <p class="specs-eyebrow" data-i18n="specs.eyebrow">Technical Specifications</p>
+          <h3 class="specs-heading" data-i18n="specs.heading">Crafted in 4K Cinema Resolution.</h3>
+
+          <dl class="specs-grid">
+            <div class="spec-item">
+              <dt data-i18n="specs.runtimeDt">Running Time</dt>
+              <dd data-i18n="specs.runtimeDd">83 minutes (Feature Documentary)</dd>
+            </div>
+            <div class="spec-item">
+              <dt data-i18n="specs.masterDt">Master Format</dt>
+              <dd data-i18n="specs.masterDd">4K Ultra HD (3840×2160) · 23.976 fps · 16:9</dd>
+            </div>
+            <div class="spec-item">
+              <dt data-i18n="specs.editionsDt">Included Editions</dt>
+              <dd data-i18n="specs.editionsDd">English Subtitled Edition &amp; Unsubtitled Original Japanese Master</dd>
+            </div>
+            <div class="spec-item">
+              <dt data-i18n="specs.audioDt">Language &amp; Audio</dt>
+              <dd data-i18n="specs.audioDd">Japanese · 48 kHz Stereo</dd>
+            </div>
+            <div class="spec-item">
+              <dt data-i18n="specs.scoreDt">Music</dt>
+              <dd data-i18n="specs.scoreDd">Erik Satie — “Gymnopédie No. 1” &amp; “Gnossienne No. 1” (performed by Tom Olivier)</dd>
+            </div>
+            <div class="spec-item">
+              <dt data-i18n="specs.locationDt">Filmed On Location</dt>
+              <dd data-i18n="specs.locationDd">Kyoto, Japan</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. FILM STILLS — 4K BENTO GALLERY + LIGHTBOX -->
+    <section class="section" id="stills" aria-labelledby="heading-stills">
+      <div class="section-intro">
+        <p class="section-eyebrow" data-i18n="stills.eyebrow">03 · Visual Archive</p>
+        <h2 class="section-title" id="heading-stills" data-i18n="stills.heading">Frames from Kinobu.</h2>
+        <p class="section-lead" data-i18n="stills.lead">
+          Select any frame to inspect in full screen.
+        </p>
+      </div>
+
+      <div class="stills-bento" id="stills-grid">
+        <figure class="still-card still-card--wide">
+          <button type="button" class="still-trigger" data-still-index="0">
+            <img src="assets/stills/front-evening.jpg" alt="Evening facade of Kinobu in downtown Kyoto" data-i18n-alt="stills.s1Alt" loading="lazy" width="1920" height="1080">
+          </button>
+          <figcaption class="still-caption" data-i18n="stills.s1Cap">Front of Kinobu at dusk on Shinmachi-dōri, downtown Kyoto</figcaption>
+        </figure>
+
+        <figure class="still-card">
+          <button type="button" class="still-trigger" data-still-index="1">
+            <img src="assets/stills/chef-uni.jpg" alt="Chef Takuji Takahashi preparing a sea urchin dish in Kinobu’s kitchen" data-i18n-alt="stills.s2Alt" loading="lazy" width="1920" height="1080">
+          </button>
+          <figcaption class="still-caption" data-i18n="stills.s2Cap">Chef Takuji Takahashi arranging sea urchin (uni) in the kitchen</figcaption>
+        </figure>
+
+        <figure class="still-card">
+          <button type="button" class="still-trigger" data-still-index="2">
+            <img src="assets/stills/saba-sushi.jpg" alt="Saba sushi served on an autumn persimmon leaf in vermilion lacquerware" data-i18n-alt="stills.s3Alt" loading="lazy" width="1920" height="1080">
+          </button>
+          <figcaption class="still-caption" data-i18n="stills.s3Cap">Saba-zushi resting on an autumn persimmon leaf in vermilion lacquerware</figcaption>
+        </figure>
+
+        <figure class="still-card still-card--wide">
+          <button type="button" class="still-trigger" data-still-index="3">
+            <img src="assets/stills/noh-dance.jpg" alt="Takuji Takahashi performing classical Noh dance on stage" data-i18n-alt="stills.s4Alt" loading="lazy" width="1920" height="1080">
+          </button>
+          <figcaption class="still-caption" data-i18n="stills.s4Cap">Takuji Takahashi performing Noh mai before the painted pine stage</figcaption>
+        </figure>
+
+        <figure class="still-card">
+          <button type="button" class="still-trigger" data-still-index="4">
+            <img src="assets/stills/watermelon-radish.jpg" alt="Peeling watermelon radish into a continuous paper-thin ribbon" data-i18n-alt="stills.s5Alt" loading="lazy" width="1920" height="1080">
+          </button>
+          <figcaption class="still-caption" data-i18n="stills.s5Cap">Katsuramuki knife work: slicing watermelon radish into a translucent sheet</figcaption>
+        </figure>
+
+        <figure class="still-card">
+          <button type="button" class="still-trigger" data-still-index="5">
+            <img src="assets/stills/spring-soup.jpg" alt="Ladling emerald spring soup over grilled fish in lacquer bowls" data-i18n-alt="stills.s6Alt" loading="lazy" width="1920" height="1080">
+          </button>
+          <figcaption class="still-caption" data-i18n="stills.s6Cap">Spring green-pea soup ladled over crisply grilled fish in gold-makie bowls</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 5. FILMMAKER — CHIKARA MOTOMURA -->
+    <section class="section" id="director" aria-labelledby="heading-director">
+      <div class="section-intro">
+        <p class="section-eyebrow" data-i18n="director.eyebrow">04 · Filmmaker</p>
+        <h2 class="section-title" id="heading-director" data-i18n="director.heading">Chikara Motomura</h2>
+      </div>
+
+      <div class="director-card">
+        <div class="prose">
+          <p data-i18n="director.p1">
+            Born in Japan and based in the San Francisco Bay Area, Chikara Motomura has worked for nearly thirty-five years as an independent documentary director, cinematographer, and editor across New York, Hawaii, and California. Beginning his career in New York, he spent more than two decades directing and shooting for major Japanese television networks including NHK, Japan’s public broadcaster.
+          </p>
+          <p data-i18n-html="director.p2">
+            After moving to the Bay Area in 1997, Motomura served as a principal collaborator on fourteen independent feature films with Sundance Grand Jury Prize and Cannes Caméra d’Or winner Rob Nilsson, and worked as cinematographer and editor on Link TV’s Peabody Award-winning program <em>Mosaic</em>. Often working as an intimate one-person camera and sound crew, his feature documentaries include the internationally screened <em>Journey to Hokusai</em> (2019), <em>Kinobu: Food, Tradition, and Identity</em> (2025), and the forthcoming <em>The Last Boatbuilder</em>.
+          </p>
+        </div>
+
+        <div class="inline-links">
+          <a href="https://www.chikaramotomura.net" data-site-director target="_blank" rel="noopener" data-i18n="director.siteLink">chikaramotomura.net &nearr;</a>
+          <a href="mailto:chikaramotomura@gmail.com" data-site-email data-i18n="director.contactLink">Contact Filmmaker &nearr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. SCREENINGS & AUDIENCE PRAISE -->
+    <section class="section" id="screenings" aria-labelledby="heading-screenings">
+      <div class="section-intro">
+        <p class="section-eyebrow" data-i18n="screenings.eyebrow">05 · Exhibition &amp; Reception</p>
+        <h2 class="section-title" id="heading-screenings" data-i18n="screenings.heading">Screenings &amp; Praise.</h2>
+      </div>
+
+      <div class="events-grid">
+        <article class="event-card">
+          <p class="event-meta" data-i18n="screenings.s1Meta">World Premiere · October 2025</p>
+          <h3 class="event-title" data-i18n="screenings.s1Title">Hawaiʻi International Film Festival (HIFF)</h3>
+          <p class="event-detail" data-i18n="screenings.s1Detail">
+            Official Selection 2025. Premiered to festival audiences in Honolulu celebrating Pacific Rim and Japanese cinema.
+          </p>
+        </article>
+
+        <article class="event-card">
+          <p class="event-meta" data-i18n="screenings.s2Meta">Theatrical Run · November 2025</p>
+          <h3 class="event-title" data-i18n="screenings.s2Title">The Lark Theater — Larkspur, California</h3>
+          <p class="event-detail" data-i18n="screenings.s2Detail">
+            Extended month-long theatrical engagement in Marin County following unanimous audience response.
+          </p>
+        </article>
+      </div>
+
+      <div class="quotes-grid" aria-label="Audience reactions">
+        <blockquote class="quote-card quote-card--wide">
+          <p data-i18n="praise.q1">
+            “It’s interesting to me how this quiet film captures the intensity that the subject brings to cooking, and the juxtaposition of the focused hustle of Kinobu’s hard-working chefs and the serenity of the private dining rooms is a compelling feature of the film. I admired the compositions and could almost smell the food in some of the lush shots!”
+          </p>
+          <cite>— Heidi H., Lark Theater</cite>
+        </blockquote>
+
+        <blockquote class="quote-card">
+          <p data-i18n="praise.q2">
+            “Kinobu was a masterpiece. Filmmaker found all the beauty and humor in the fine restaurant world.”
+          </p>
+          <cite>— Tom K.</cite>
+        </blockquote>
+
+        <blockquote class="quote-card">
+          <p data-i18n="praise.q3">
+            “It was perfection! Mesmerizing and meditative.”
+          </p>
+          <cite>— Linda V.</cite>
+        </blockquote>
+      </div>
+
+      <div class="inline-links">
+        <a href="https://www.kinobu.co.jp/en" data-site-restaurant target="_blank" rel="noopener" data-i18n="screenings.kinobuLink">Visit Kyō-ryōri Kinobu (Kyoto) &nearr;</a>
+        <span><span data-i18n="screenings.inquiries">Screenings &amp; Press Inquiries:</span> <a href="mailto:chikaramotomura@gmail.com" data-site-email="text">chikaramotomura@gmail.com</a></span>
+      </div>
+    </section>
+
+    <!-- 7. CREDITS -->
+    <section class="section" id="credits" aria-labelledby="heading-credits">
+      <div class="section-intro">
+        <p class="section-eyebrow" data-i18n="credits.eyebrow">06 · Credits</p>
+        <h2 class="section-title" id="heading-credits" data-i18n="credits.heading">Film Credits</h2>
+      </div>
+
+      <div class="credits-card">
+        <dl class="credits-list">
+          <div class="credits-row">
+            <dt data-i18n="credits.prodDirEdDt">Produced, Directed &amp; Edited By</dt>
+            <dd data-i18n="credits.prodDirEdDd">Chikara Motomura</dd>
+          </div>
+          <div class="credits-row">
+            <dt data-i18n="credits.camSoundDt">Cinematography &amp; Sound Recording</dt>
+            <dd data-i18n="credits.camSoundDd">Chikara Motomura</dd>
+          </div>
+          <div class="credits-row">
+            <dt data-i18n="credits.featuringDt">Featuring</dt>
+            <dd data-i18n="credits.featuringDd">Takuji Takahashi (Third-Generation Chef-Owner, Kinobu)</dd>
+          </div>
+          <div class="credits-row">
+            <dt data-i18n="credits.editConsultDt">Editorial Consultant</dt>
+            <dd data-i18n="credits.editConsultDd">Sylvia Donati</dd>
+          </div>
+          <div class="credits-row">
+            <dt data-i18n="credits.visualEnhDt">Visual Enhancement</dt>
+            <dd data-i18n="credits.visualEnhDd">Zhan Petrov</dd>
+          </div>
+          <div class="credits-row">
+            <dt data-i18n="credits.posterDt">Poster Design</dt>
+            <dd data-i18n="credits.posterDd">Raffa Motomura</dd>
+          </div>
+          <div class="credits-row">
+            <dt data-i18n="credits.paDt">Production Assistant</dt>
+            <dd data-i18n="credits.paDd">Dexter Lama</dd>
+          </div>
+          <div class="credits-row">
+            <dt data-i18n="credits.musicDt">Music</dt>
+            <dd class="credits-lines" data-i18n-html="credits.musicDd">
+              <span class="credits-line">“Gymnopédie No. 1” &mdash; composed by Erik Satie, performed by Tom Olivier</span>
+              <span class="credits-line">“Gnossienne No. 1” &mdash; composed by Erik Satie, performed by Tom Olivier</span>
+            </dd>
+          </div>
+          <div class="credits-row">
+            <dt data-i18n="credits.thanksDt">Special Thanks</dt>
+            <dd data-i18n-html="credits.thanksDd">
+              <span class="credits-thanks-grid">
+                <span>Takuji Takahashi</span>
+                <span>Staff of Kinobu Restaurant</span>
+                <span>Guests of Kinobu Restaurant</span>
+                <span>Yukitoshi Hirota</span>
+                <span>Gion Festival Iwatoyama Hozonkai</span>
+                <span>Takeshi Kadokami</span>
+                <span>Shigefumi Fukuyama</span>
+                <span>Uosaburo</span>
+                <span>Tankuma Kitamise Honten</span>
+                <span>Seiwasou</span>
+                <span>Arashiyama Benkei</span>
+                <span>Takeshigerou</span>
+                <span>Toriyone</span>
+                <span>Manshige</span>
+                <span>Byodoin Chikurin</span>
+                <span>Yasumi Kaji</span>
+                <span>Eri Kitamura</span>
+              </span>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LIGHTBOX MODAL FOR 4K FILM STILLS -->
+  <div class="lightbox" id="still-lightbox" role="dialog" aria-modal="true" aria-label="Film still viewer" hidden>
+    <div class="lightbox-backdrop" data-lightbox-close></div>
+    <div class="lightbox-content">
+      <div class="lightbox-toolbar">
+        <span class="lightbox-counter" id="lightbox-counter">1 / 6</span>
+        <button type="button" class="lightbox-close" id="lightbox-close" data-i18n="stills.close">Close</button>
+      </div>
+      <div class="lightbox-stage">
+        <button type="button" class="lightbox-nav lightbox-nav--prev" id="lightbox-prev" aria-label="Previous still">&lsaquo;</button>
+        <img id="lightbox-img" src="" alt="">
+        <button type="button" class="lightbox-nav lightbox-nav--next" id="lightbox-next" aria-label="Next still">&rsaquo;</button>
+      </div>
+      <p class="lightbox-caption" id="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand-group">
+        <span class="footer-brand"><span lang="ja">木乃婦</span> KINOBU</span>
+        <span class="footer-copy" data-i18n="footer.rights">&copy; Chikara Motomura. All rights reserved.</span>
+      </div>
+
+      <div class="footer-links">
+        <a href="#watch" data-i18n="footer.watch">Rent / Download</a>
+        <a href="watch.html" data-i18n="footer.room">Screening Room</a>
+        <a href="https://www.chikaramotomura.net" data-site-director target="_blank" rel="noopener">Chikara Motomura</a>
+        <a href="mailto:chikaramotomura@gmail.com" data-site-email data-i18n="footer.contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="site.js"></script>
+</body>
+</html>

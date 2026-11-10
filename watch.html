@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Screening Room — KINOBU (木乃婦)</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <meta name="theme-color" content="#090a0b">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="watch-room" id="watch-player-root">
+  <a class="skip-link" href="#watch-screen" data-i18n="watchRoom.skip">Skip to player</a>
+
+  <!-- Frosted Glass Screening Room Bar -->
+  <nav class="site-nav" aria-label="Screening room navigation">
+    <div class="site-nav-inner">
+      <a class="site-nav-brand" href="./" data-i18n-aria="watchRoom.backAria">
+        <span aria-hidden="true">&larr;</span>
+        <span class="brand-kanji" lang="ja">木乃婦</span>
+        <span class="brand-roman">KINOBU</span>
+      </a>
+
+      <div class="site-nav-controls">
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button type="button" class="lang-btn is-active" data-set-lang="en" aria-pressed="true" lang="en">EN</button>
+          <button type="button" class="lang-btn" data-set-lang="ja" aria-pressed="false" lang="ja">日本語</button>
+        </div>
+        <a class="nav-watch-pill" href="./#watch" id="watch-nav-upgrade" data-i18n="watchRoom.options">Watch Options</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="watch-main" id="watch-screen">
+    <div class="hero-ambient" aria-hidden="true"></div>
+
+    <div class="watch-stage">
+      <div class="cinema-frame" role="region" aria-label="KINOBU full film player" data-i18n-aria="watchRoom.vfAria">
+        <div class="cinema-bar cinema-bar--top">
+          <div class="cinema-meta">
+            <span class="cinema-live-dot" aria-hidden="true"></span>
+            <span id="watch-hud-mode" data-i18n="watchRoom.modeDefault">Screening Room</span>
+          </div>
+          <div class="cinema-meta cinema-meta--dim">
+            <span class="watch-hide-xs">KINOBU (2025)</span>
+            <span class="cinema-sep watch-hide-xs" aria-hidden="true">&middot;</span>
+            <span>83 MIN &middot; 4K UHD</span>
+          </div>
+        </div>
+
+        <div class="cinema-screen" id="watch-cinema-screen">
+          <video
+            id="film-video"
+            controls
+            playsinline
+            preload="metadata"
+            controlslist="nodownload"
+            poster="assets/trailer-poster.jpg"
+            hidden
+          ></video>
+
+          <div class="watch-gate-message" id="watch-gate">
+            <span class="watch-gate-seal" lang="ja" aria-hidden="true">木乃婦</span>
+            <h1 class="watch-gate-title" id="watch-gate-title" data-i18n="watchRoom.gateTitle">Screening Pass Required</h1>
+            <p class="watch-gate-copy" id="watch-gate-copy" data-i18n-html="watchRoom.gateCopy">
+              Rent <em>KINOBU</em> for <strong>$4.99</strong> (48-hour 4K stream) or purchase the digital edition for <strong>$14.99</strong> (unlimited streaming + 4K MP4 download). After Stripe checkout, you are automatically brought back here to watch or download.
+            </p>
+            <div class="watch-gate-actions">
+              <a class="btn btn--hero-primary" id="watch-gate-rent" href="./#watch" rel="noopener" data-i18n="watchRoom.gateRentCta">Rent Film — $4.99</a>
+              <a class="btn btn--hero-secondary" id="watch-gate-download" href="./#watch" rel="noopener" data-i18n="watchRoom.gateDownloadCta">Download Film — $14.99</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="cinema-bar cinema-bar--bottom" aria-hidden="true">
+          <span data-i18n="watchRoom.hudDir">Directed by Chikara Motomura</span>
+          <span data-i18n="watchRoom.hudAudio">Japanese · English Subtitles</span>
+        </div>
+      </div>
+
+      <!-- Post-purchase playback & download controls bar -->
+      <div class="watch-controls-bar" id="watch-controls-bar" hidden>
+        <p class="watch-expiry" id="watch-expiry"></p>
+        <div class="watch-download-group">
+          <a class="btn btn--hero-primary" id="watch-download-en" href="#" download hidden data-i18n="watchRoom.downloadEn">Download 4K MP4 (EN Subtitles)</a>
+          <a class="btn btn--hero-secondary" id="watch-download-ja" href="#" download hidden data-i18n="watchRoom.downloadJa">Download 4K MP4 (Original · No Sub)</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="watch-footer" aria-label="Footer">
+    <div class="watch-footer-inner">
+      <span data-i18n="footer.rights">&copy; Chikara Motomura. All rights reserved.</span>
+      <a href="mailto:chikaramotomura@gmail.com" data-site-email="text">chikaramotomura@gmail.com</a>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="site.js"></script>
+</body>
+</html>

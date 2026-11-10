@@ -1,0 +1,1919 @@
+/* ==========================================================================
+   KINOBU (木乃婦) — Food, Tradition, and Identity
+   Apple Modern Design System · Responsive · Accessible · Bilingual (EN / 日本語)
+   ========================================================================== */
+
+:root {
+  /* Apple Modern Palette + Subtle Kyoto Kinobu Accents */
+  --cinema-bg: #08090a;
+  --cinema-elevated: #121416;
+  --cinema-glass: rgba(22, 24, 27, 0.72);
+  --cinema-border: rgba(255, 255, 255, 0.12);
+  --cinema-border-strong: rgba(255, 255, 255, 0.22);
+
+  --canvas: #f5f5f7;
+  --surface: #ffffff;
+  --surface-subtle: #fbfbfd;
+
+  --ink: #1d1d1f;
+  --ink-secondary: #515154;
+  --ink-muted: #6e6e73;
+  --ink-soft: #86868b;
+
+  --hero-text: #f5f5f7;
+  --hero-muted: #a1a1a6;
+  --hero-dim: #7c7c82;
+
+  --kyoto-pine: #2f4a3c;
+  --kyoto-pine-light: #436854;
+  --kyoto-sage-tint: rgba(47, 74, 60, 0.08);
+  --kyoto-lantern: #d4a564;
+
+  --apple-blue: #0071e3;
+  --apple-blue-hover: #0077ed;
+
+  --hairline: rgba(0, 0, 0, 0.08);
+  --hairline-strong: rgba(0, 0, 0, 0.14);
+
+  --shadow-card: 0 10px 34px rgba(0, 0, 0, 0.045), 0 1px 3px rgba(0, 0, 0, 0.03);
+  --shadow-card-hover: 0 20px 48px rgba(0, 0, 0, 0.085), 0 2px 6px rgba(0, 0, 0, 0.04);
+  --shadow-cinema: 0 34px 90px rgba(0, 0, 0, 0.72), 0 8px 24px rgba(0, 0, 0, 0.45);
+
+  --radius-xl: 26px;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-pill: 980px;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Helvetica Neue", Arial, sans-serif;
+  --font-ja-sans: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mincho: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;
+
+  --max-wide: 1080px;
+  --max-reading: 820px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  background-color: var(--canvas);
+  color: var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.62;
+  letter-spacing: -0.011em;
+  color: var(--ink);
+  background-color: var(--canvas);
+  overflow-x: clip;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html[lang="ja"] body {
+  font-family: var(--font-ja-sans);
+  line-height: 1.82;
+  letter-spacing: 0.01em;
+}
+
+img,
+iframe,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus rings */
+:focus-visible {
+  outline: 2px solid var(--apple-blue);
+  outline-offset: 3px;
+}
+
+.site-nav :focus-visible,
+.hero :focus-visible,
+.watch-room :focus-visible,
+.lightbox :focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -120px;
+  left: 1rem;
+  z-index: 1000;
+  padding: 0.6rem 1.15rem;
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: 0.88rem;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+
+.skip-link:focus {
+  top: 0.75rem;
+}
+
+/* ==========================================================================
+   GLOBAL FROSTED-GLASS APPLE NAVIGATION BAR
+   ========================================================================== */
+
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background-color: rgba(12, 13, 15, 0.78);
+  backdrop-filter: saturate(180%) blur(22px);
+  -webkit-backdrop-filter: saturate(180%) blur(22px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  color: var(--hero-text);
+}
+
+.site-nav-inner {
+  position: relative;
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  min-height: 52px;
+  padding: 0.4rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+}
+
+.site-nav-brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.48rem;
+  text-decoration: none;
+  color: var(--hero-text);
+  white-space: nowrap;
+}
+
+.brand-kanji {
+  font-family: var(--font-mincho);
+  font-weight: 600;
+  font-size: 1.04rem;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+}
+
+.brand-roman {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.88rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 247, 0.88);
+}
+
+.site-nav-links {
+  display: none;
+}
+
+/* Desktop inline links */
+@media (min-width: 920px) {
+  .site-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.45rem;
+  }
+
+  .site-nav-links a {
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    color: rgba(245, 245, 247, 0.76);
+    text-decoration: none;
+    transition: color 160ms ease;
+    white-space: nowrap;
+  }
+
+  .site-nav-links a:hover {
+    color: #ffffff;
+  }
+
+  .menu-toggle {
+    display: none !important;
+  }
+}
+
+/* Mobile glass dropdown */
+@media (max-width: 919px) {
+  .site-nav.is-open .site-nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0.65rem 1.35rem 1.15rem;
+    background: rgba(14, 15, 18, 0.96);
+    backdrop-filter: saturate(180%) blur(24px);
+    -webkit-backdrop-filter: saturate(180%) blur(24px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 20px 44px rgba(0, 0, 0, 0.5);
+  }
+
+  .site-nav-links a {
+    padding: 0.72rem 0;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: rgba(245, 245, 247, 0.86);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .site-nav-links a:last-child {
+    border-bottom: 0;
+  }
+}
+
+.site-nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+/* Apple Segmented Language Pill Switcher */
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.lang-btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: rgba(245, 245, 247, 0.72);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  min-height: 26px;
+  padding: 0.28rem 0.65rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+.lang-btn[lang="ja"] {
+  font-family: var(--font-ja-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.01em;
+}
+
+.lang-btn:hover:not(.is-active) {
+  color: #ffffff;
+}
+
+.lang-btn.is-active {
+  background: #f5f5f7;
+  color: #1d1d1f;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.28);
+}
+
+.nav-watch-pill {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 0.28rem 0.85rem;
+  border-radius: var(--radius-pill);
+  background: var(--apple-blue);
+  color: #ffffff;
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 150ms ease, transform 150ms ease;
+}
+
+.nav-watch-pill:hover {
+  background: var(--apple-blue-hover);
+}
+
+@media (min-width: 560px) {
+  .nav-watch-pill {
+    display: inline-flex;
+  }
+}
+
+.menu-toggle {
+  appearance: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: #f5f5f7;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-pill);
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 0.75rem;
+  min-height: 30px;
+  padding: 0.28rem 0.78rem;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.menu-toggle:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* ==========================================================================
+   1. APPLE TV+ DARK CINEMA HERO & TRAILER STAGE
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  background: radial-gradient(120% 90% at 50% 0%, #17211c 0%, #0b0d0e 52%, #070809 100%);
+  color: var(--hero-text);
+  padding: 3.4rem 1.25rem 4.5rem;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero-ambient {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(640px 380px at 26% 18%, rgba(67, 104, 84, 0.22), transparent 70%),
+    radial-gradient(560px 340px at 76% 28%, rgba(212, 165, 100, 0.11), transparent 72%);
+}
+
+.hero-inner {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+}
+
+.hero-header {
+  max-width: 780px;
+  margin: 0 auto 2.6rem;
+  text-align: center;
+}
+
+.laurel-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.36rem 0.95rem;
+  margin-bottom: 1.4rem;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 247, 0.88);
+}
+
+html[lang="ja"] .laurel-pill {
+  letter-spacing: 0.04em;
+  font-size: 0.73rem;
+}
+
+.laurel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--kyoto-lantern);
+  box-shadow: 0 0 10px rgba(212, 165, 100, 0.75);
+}
+
+.hero-title {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.32em 0.45em;
+  line-height: 1.04;
+}
+
+.hero-title-kanji {
+  font-family: var(--font-mincho);
+  font-weight: 500;
+  font-size: clamp(2.55rem, 6.6vw, 4.35rem);
+  letter-spacing: 0.06em;
+  color: #ffffff;
+}
+
+.hero-title-roman {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: clamp(2.55rem, 6.8vw, 4.5rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.hero-subtitle {
+  margin: 0.65rem 0 0;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(1.05rem, 2.3vw, 1.38rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 247, 0.86);
+}
+
+html[lang="ja"] .hero-subtitle {
+  font-family: var(--font-mincho);
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  font-size: clamp(1rem, 2.1vw, 1.26rem);
+}
+
+.hero-byline {
+  margin: 0.95rem 0 0.35rem;
+  font-size: 1.02rem;
+  font-weight: 400;
+  color: rgba(245, 245, 247, 0.9);
+}
+
+.hero-facts {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  color: var(--hero-muted);
+}
+
+.hero-actions {
+  margin-top: 1.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+/* ==========================================================================
+   APPLE MODERN PILL & CARD BUTTONS
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 46px;
+  padding: 0.72rem 1.6rem;
+  border-radius: var(--radius-pill);
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 0.94rem;
+  letter-spacing: -0.005em;
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    background-color 180ms cubic-bezier(0.25, 0.1, 0.25, 1),
+    color 180ms cubic-bezier(0.25, 0.1, 0.25, 1),
+    border-color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.btn:active:not(:disabled):not(.is-disabled) {
+  transform: scale(0.985);
+}
+
+.btn--hero-primary {
+  background: #f5f5f7;
+  color: #1d1d1f;
+  border-color: #f5f5f7;
+  font-weight: 600;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+}
+
+.btn--hero-primary:hover {
+  background: #ffffff;
+  border-color: #ffffff;
+  box-shadow: 0 10px 28px rgba(255, 255, 255, 0.14);
+}
+
+.btn--hero-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f5f5f7;
+  border-color: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.btn--hero-secondary:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.38);
+}
+
+.btn--ticket {
+  width: 100%;
+  background: var(--ink);
+  color: #ffffff;
+  border-color: var(--ink);
+  font-weight: 600;
+  min-height: 50px;
+}
+
+.btn--ticket:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: #000000;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+}
+
+.btn--ticket-featured {
+  width: 100%;
+  background: #ffffff;
+  color: #1d1d1f;
+  border-color: #ffffff;
+  font-weight: 600;
+  min-height: 50px;
+}
+
+.btn--ticket-featured:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: #f5f5f7;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Clean Apple Ready-for-Stripe Disabled State */
+.btn:disabled,
+.btn[aria-disabled="true"],
+.btn.is-disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: none;
+}
+
+.ticket-card:not(.ticket-card--featured) .btn.is-disabled {
+  background: #ebebf0;
+  color: #6e6e73;
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+.ticket-card--featured .btn.is-disabled {
+  background: rgba(255, 255, 255, 0.14);
+  color: rgba(245, 245, 247, 0.72);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+/* ==========================================================================
+   APPLE CINEMA TRAILER PLAYER FRAME
+   ========================================================================== */
+
+.trailer-stage {
+  max-width: 960px;
+  margin: 0 auto;
+  scroll-margin-top: 68px;
+}
+
+.cinema-frame {
+  position: relative;
+  border-radius: var(--radius-xl);
+  background: rgba(18, 20, 22, 0.82);
+  border: 1px solid var(--cinema-border);
+  padding: 0.75rem;
+  box-shadow: var(--shadow-cinema);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+@media (min-width: 680px) {
+  .cinema-frame {
+    padding: 0.95rem 1.05rem;
+  }
+}
+
+.cinema-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.55rem;
+  padding: 0 0.25rem;
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--hero-muted);
+}
+
+.cinema-bar--top {
+  margin-bottom: 0.65rem;
+}
+
+.cinema-bar--bottom {
+  margin-top: 0.65rem;
+  font-size: 0.73rem;
+  color: var(--hero-dim);
+}
+
+.cinema-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: rgba(245, 245, 247, 0.9);
+}
+
+.cinema-meta--dim {
+  color: var(--hero-muted);
+}
+
+.cinema-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #30d158;
+  box-shadow: 0 0 8px rgba(48, 209, 88, 0.6);
+}
+
+.cinema-sep {
+  opacity: 0.45;
+}
+
+/* Subtitle Version Segmented Pill */
+.sub-toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.sub-btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: rgba(245, 245, 247, 0.68);
+  font-family: inherit;
+  font-size: 0.71rem;
+  font-weight: 500;
+  padding: 0.26rem 0.68rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.sub-btn:hover:not(.is-active) {
+  color: #ffffff;
+}
+
+.sub-btn.is-active {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.cinema-screen {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  background: #000000;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cinema-screen video,
+.cinema-screen iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #000000;
+  object-fit: contain;
+}
+
+.cinema-play-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.38) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 200ms ease;
+}
+
+.cinema-play-overlay[hidden] {
+  display: none !important;
+}
+
+.cinema-play-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.85rem 1.65rem;
+  border-radius: var(--radius-pill);
+  background: rgba(24, 25, 28, 0.72);
+  backdrop-filter: saturate(180%) blur(24px);
+  -webkit-backdrop-filter: saturate(180%) blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.48);
+  transition: transform 200ms cubic-bezier(0.25, 0.1, 0.25, 1), background-color 200ms ease;
+}
+
+.cinema-play-overlay:hover .cinema-play-pill {
+  transform: scale(1.04);
+  background: rgba(255, 255, 255, 0.94);
+  color: #1d1d1f;
+}
+
+.cinema-play-icon {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 0 6px 11px;
+  border-color: transparent transparent transparent currentColor;
+  margin-left: 2px;
+}
+
+/* ==========================================================================
+   MAIN APPLE EDITORIAL LAYOUT & SECTION HEADERS
+   ========================================================================== */
+
+.page-main {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  padding: 0 1.25rem 2rem;
+}
+
+.section {
+  padding: 4.75rem 0;
+  border-bottom: 1px solid var(--hairline);
+  scroll-margin-top: 58px;
+}
+
+.section:last-of-type {
+  border-bottom: 0;
+}
+
+.section-intro {
+  max-width: 700px;
+  margin-bottom: 2.4rem;
+}
+
+.section-eyebrow {
+  margin: 0 0 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--kyoto-pine);
+}
+
+.section-title {
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(1.95rem, 4.2vw, 2.85rem);
+  line-height: 1.1;
+  letter-spacing: -0.028em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+html[lang="ja"] .section-title {
+  font-size: clamp(1.65rem, 3.6vw, 2.35rem);
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+}
+
+.section-lead {
+  margin: 0.85rem 0 0;
+  font-size: 1.1rem;
+  line-height: 1.55;
+  color: var(--ink-muted);
+  text-wrap: pretty;
+}
+
+/* ==========================================================================
+   2. WATCH — RENT ($4.99) & DOWNLOAD ($14.99) APPLE BENTO CARDS
+   ========================================================================== */
+
+.tickets-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.35rem;
+}
+
+@media (min-width: 760px) {
+  .tickets-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.6rem;
+  }
+}
+
+.ticket-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem 1.85rem;
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--shadow-card);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.ticket-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Featured Ownership / Download Card (Dark Obsidian + Kyoto Pine Glow) */
+.ticket-card--featured {
+  background: linear-gradient(160deg, #17211c 0%, #101214 55%, #0c0d0f 100%);
+  color: #f5f5f7;
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+}
+
+.ticket-card--featured:hover {
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.24);
+}
+
+.ticket-badge-row {
+  margin-bottom: 1rem;
+}
+
+.ticket-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.28rem 0.78rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.73rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: var(--kyoto-sage-tint);
+  color: var(--kyoto-pine);
+}
+
+.ticket-pill--accent {
+  background: rgba(212, 165, 100, 0.16);
+  color: #ebd0a7;
+  border: 1px solid rgba(212, 165, 100, 0.28);
+}
+
+.ticket-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1.1rem;
+  margin-bottom: 1.1rem;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.ticket-card--featured .ticket-top {
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+.ticket-label {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+html[lang="ja"] .ticket-label {
+  font-size: 1.22rem;
+  letter-spacing: 0;
+}
+
+.ticket-price {
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.ticket-terms {
+  margin: 0 0 1.25rem;
+  font-size: 0.95rem;
+  line-height: 1.58;
+  color: var(--ink-secondary);
+}
+
+.ticket-card--featured .ticket-terms {
+  color: rgba(245, 245, 247, 0.8);
+}
+
+.ticket-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.ticket-features li {
+  position: relative;
+  padding-left: 1.55rem;
+  font-size: 0.89rem;
+  line-height: 1.48;
+  color: var(--ink-secondary);
+}
+
+.ticket-card--featured .ticket-features li {
+  color: rgba(245, 245, 247, 0.86);
+}
+
+.ticket-features li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0.02em;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--kyoto-pine);
+}
+
+.ticket-card--featured .ticket-features li::before {
+  color: var(--kyoto-lantern);
+}
+
+.ticket-action {
+  margin-top: auto;
+}
+
+.ticket-status {
+  margin: 0.65rem 0 0;
+  text-align: center;
+  font-size: 0.79rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+}
+
+.ticket-card--featured .ticket-status {
+  color: rgba(245, 245, 247, 0.62);
+}
+
+.checkout-trust-bar {
+  margin-top: 1.45rem;
+  padding: 1rem 1.35rem;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.66);
+  border: 1px solid var(--hairline);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  font-size: 0.83rem;
+  color: var(--ink-muted);
+}
+
+.trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.trust-icon {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  color: var(--kyoto-pine);
+}
+
+.screening-room-link {
+  font-weight: 500;
+  color: var(--apple-blue);
+  text-decoration: none;
+}
+
+.screening-room-link:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   3. THE FILM — EPIGRAPH, SYNOPSIS, PILLARS & POSTER SHOWCASE
+   ========================================================================== */
+
+.kyoto-epigraph {
+  margin: 0 0 2.2rem;
+  padding: 1.85rem 2rem;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, #24382d 0%, #18261f 100%);
+  color: #f5f5f7;
+  box-shadow: var(--shadow-card);
+}
+
+.kyoto-epigraph p {
+  margin: 0;
+  font-family: var(--font-mincho);
+  font-size: clamp(1.04rem, 1.9vw, 1.22rem);
+  line-height: 1.85;
+  color: rgba(245, 245, 247, 0.95);
+}
+
+.logline {
+  max-width: var(--max-reading);
+  margin: 0 0 1.4rem;
+  font-size: clamp(1.2rem, 2.2vw, 1.42rem);
+  font-weight: 600;
+  line-height: 1.48;
+  letter-spacing: -0.016em;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+html[lang="ja"] .logline {
+  font-size: clamp(1.08rem, 1.9vw, 1.25rem);
+  line-height: 1.75;
+  letter-spacing: 0;
+}
+
+.prose {
+  max-width: var(--max-reading);
+  font-size: 1.03rem;
+  color: var(--ink-secondary);
+}
+
+.prose p {
+  margin: 0 0 1.15rem;
+}
+
+.prose p:last-child {
+  margin-bottom: 0;
+}
+
+/* Three Bento Pillars */
+.pillars-grid {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.15rem;
+}
+
+@media (min-width: 780px) {
+  .pillars-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.pillar-card {
+  padding: 1.75rem 1.6rem;
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--shadow-card);
+}
+
+.pillar-kanji {
+  display: inline-block;
+  margin-bottom: 0.65rem;
+  font-family: var(--font-mincho);
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: var(--kyoto-pine);
+}
+
+.pillar-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
+.pillar-copy {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--ink-muted);
+}
+
+/* Poster + Technical Specs Split Bento */
+.poster-showcase {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+@media (min-width: 820px) {
+  .poster-showcase {
+    grid-template-columns: 330px minmax(0, 1fr);
+  }
+}
+
+.poster-card {
+  margin: 0;
+  padding: 0.85rem;
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.poster-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+
+.specs-card {
+  padding: 2.1rem 2rem;
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.specs-eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.specs-heading {
+  margin: 0 0 1.5rem;
+  font-size: clamp(1.35rem, 2.4vw, 1.7rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.specs-grid {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem 1.75rem;
+}
+
+@media (min-width: 560px) {
+  .specs-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.spec-item {
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--hairline);
+}
+
+.spec-item dt {
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+  margin-bottom: 0.22rem;
+}
+
+.spec-item dd {
+  margin: 0;
+  font-size: 0.93rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+/* ==========================================================================
+   4. FILM STILLS — APPLE BENTO GALLERY + FULLSCREEN LIGHTBOX
+   ========================================================================== */
+
+.stills-bento {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 720px) {
+  .stills-bento {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .still-card--wide {
+    grid-column: span 2;
+  }
+}
+
+.still-card {
+  margin: 0;
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.still-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.still-trigger {
+  appearance: none;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: #0b0c0d;
+  cursor: zoom-in;
+  overflow: hidden;
+}
+
+.still-trigger img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: transform 420ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.still-card:hover .still-trigger img {
+  transform: scale(1.022);
+}
+
+.still-caption {
+  padding: 0.9rem 1.25rem;
+  font-size: 0.86rem;
+  color: var(--ink-muted);
+}
+
+/* Lightbox Modal */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+.lightbox[hidden] {
+  display: none !important;
+}
+
+.lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 9, 11, 0.9);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+.lightbox-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1120px;
+  color: #f5f5f7;
+}
+
+.lightbox-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.lightbox-counter {
+  font-size: 0.82rem;
+  color: var(--hero-muted);
+}
+
+.lightbox-close {
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border-radius: var(--radius-pill);
+  padding: 0.38rem 0.95rem;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.lightbox-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.lightbox-stage img {
+  width: 100%;
+  max-height: 76vh;
+  object-fit: contain;
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(18, 20, 22, 0.68);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #ffffff;
+  font-size: 1.6rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.lightbox-nav:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.lightbox-nav--prev { left: 0.85rem; }
+.lightbox-nav--next { right: 0.85rem; }
+
+.lightbox-caption {
+  margin: 0.85rem 0 0;
+  text-align: center;
+  font-size: 0.92rem;
+  color: rgba(245, 245, 247, 0.86);
+}
+
+/* ==========================================================================
+   5. DIRECTOR, SCREENINGS & AUDIENCE QUOTES
+   ========================================================================== */
+
+.director-card,
+.credits-card {
+  padding: 2.2rem 2rem;
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--shadow-card);
+}
+
+.inline-links {
+  margin-top: 1.65rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--hairline);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.75rem;
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+}
+
+.inline-links a {
+  color: var(--apple-blue);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.inline-links a:hover {
+  text-decoration: underline;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.15rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 720px) {
+  .events-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.event-card {
+  padding: 1.75rem 1.65rem;
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--shadow-card);
+}
+
+.event-meta {
+  margin: 0 0 0.45rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--kyoto-pine);
+}
+
+.event-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.18rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
+.event-detail {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--ink-muted);
+}
+
+.quotes-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.15rem;
+}
+
+@media (min-width: 720px) {
+  .quotes-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .quote-card--wide {
+    grid-column: span 2;
+  }
+}
+
+.quote-card {
+  margin: 0;
+  padding: 1.7rem 1.65rem;
+  border-radius: var(--radius-xl);
+  background: var(--surface-subtle);
+  border: 1px solid var(--hairline);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.9rem;
+}
+
+.quote-card p {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.66;
+  color: var(--ink-secondary);
+}
+
+.quote-card cite {
+  font-style: normal;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink-muted);
+}
+
+/* ==========================================================================
+   6. CREDITS LIST
+   ========================================================================== */
+
+.credits-list {
+  margin: 0;
+}
+
+.credits-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.25rem;
+  padding: 0.95rem 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.credits-row:first-child {
+  padding-top: 0;
+}
+
+.credits-row:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+@media (min-width: 640px) {
+  .credits-row {
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: baseline;
+  }
+}
+
+.credits-row dt {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+html[lang="ja"] .credits-row dt {
+  letter-spacing: 0.02em;
+  font-size: 0.82rem;
+}
+
+.credits-row dd {
+  margin: 0;
+  font-size: 0.96rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.credits-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.credits-thanks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 0.35rem 1.25rem;
+  font-weight: 400;
+  color: var(--ink-secondary);
+}
+
+/* ==========================================================================
+   7. FOOTER
+   ========================================================================== */
+
+.site-footer {
+  border-top: 1px solid var(--hairline);
+  background: #ececef;
+  color: var(--ink-muted);
+  font-size: 0.82rem;
+}
+
+.footer-inner {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+}
+
+.footer-brand-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.45rem 1rem;
+}
+
+.footer-brand {
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.04em;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.4rem;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: var(--ink-secondary);
+}
+
+.footer-links a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   8. SCREENING & DOWNLOAD ROOM (watch.html)
+   ========================================================================== */
+
+body.watch-room {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(120% 90% at 50% 0%, #17211c 0%, #090a0c 58%, #050607 100%);
+  color: var(--hero-text);
+}
+
+.watch-main {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.2rem 1.25rem 3rem;
+  isolation: isolate;
+}
+
+.watch-stage {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.watch-gate-message {
+  position: absolute;
+  inset: 0;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: radial-gradient(85% 85% at 50% 50%, rgba(23, 33, 28, 0.94) 0%, rgba(8, 9, 11, 0.97) 100%);
+}
+
+.watch-gate-message[hidden] {
+  display: none !important;
+}
+
+.watch-gate-seal {
+  font-family: var(--font-mincho);
+  font-size: 1.5rem;
+  letter-spacing: 0.14em;
+  color: var(--kyoto-lantern);
+  margin-bottom: 0.55rem;
+}
+
+.watch-gate-title {
+  margin: 0 0 0.65rem;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.watch-gate-copy {
+  max-width: 540px;
+  margin: 0 0 1.45rem;
+  font-size: 0.94rem;
+  line-height: 1.62;
+  color: var(--hero-muted);
+}
+
+.watch-gate-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.watch-controls-bar {
+  margin-top: 1.25rem;
+  padding: 1.1rem 1.35rem;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.9rem 1.5rem;
+}
+
+.watch-controls-bar[hidden] {
+  display: none !important;
+}
+
+.watch-expiry {
+  margin: 0;
+  font-size: 0.88rem;
+  color: rgba(245, 245, 247, 0.86);
+}
+
+.watch-download-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.watch-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.8rem;
+  color: var(--hero-dim);
+}
+
+.watch-footer-inner {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  padding: 1.35rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.watch-footer a {
+  color: var(--hero-muted);
+  text-decoration: none;
+}
+
+.watch-footer a:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 560px) {
+  .site-nav-inner {
+    padding: 0.4rem 0.9rem;
+    gap: 0.45rem;
+  }
+
+  .brand-kanji {
+    font-size: 0.95rem;
+  }
+
+  .brand-roman {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+  }
+
+  .lang-btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.68rem;
+  }
+
+  .menu-toggle {
+    padding: 0.25rem 0.65rem;
+    font-size: 0.72rem;
+  }
+
+  .hero {
+    padding: 2.3rem 1rem 3.1rem;
+  }
+
+  .laurel-pill {
+    max-width: 100%;
+    padding: 0.36rem 0.75rem;
+    font-size: 0.66rem;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .hero-title-kanji {
+    font-size: clamp(2rem, 8.8vw, 2.6rem);
+  }
+
+  .hero-title-roman {
+    font-size: clamp(2rem, 8.8vw, 2.6rem);
+    letter-spacing: 0.08em;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .cinema-frame {
+    padding: 0.6rem;
+    border-radius: 20px;
+  }
+
+  .cinema-bar--top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.48rem;
+  }
+
+  .sub-toggle {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .sub-btn {
+    flex: 1;
+    text-align: center;
+    padding: 0.28rem 0.45rem;
+    font-size: 0.68rem;
+  }
+
+  .cinema-play-pill {
+    padding: 0.68rem 1.25rem;
+    font-size: 0.86rem;
+  }
+
+  .section {
+    padding: 3.4rem 0;
+  }
+
+  .ticket-card,
+  .director-card,
+  .credits-card,
+  .specs-card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .ticket-price {
+    font-size: 1.75rem;
+  }
+
+  .kyoto-epigraph {
+    padding: 1.4rem 1.3rem;
+  }
+
+  .watch-hide-xs {
+    display: none;
+  }
+
+  .watch-gate-copy {
+    font-size: 0.82rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .watch-gate-actions .btn {
+    min-height: 38px;
+    padding: 0.45rem 0.95rem;
+    font-size: 0.8rem;
+  }
+}

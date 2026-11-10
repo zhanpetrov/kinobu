@@ -1,0 +1,17 @@
+# macOS & exFAT metadata
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+.TemporaryItems
+.fseventsd
+
+# Environment & secrets (never commit Stripe secret keys)
+.env
+.env.*
+*.pem
+*.key
+
+# Local scratch / build artifacts
+node_modules/
+dist/
