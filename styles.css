@@ -859,7 +859,7 @@ html[lang="ja"] .section-title {
 }
 
 /* ==========================================================================
-   2. WATCH — RENT ($4.99) & DOWNLOAD ($14.99) APPLE BENTO CARDS
+   2. WATCH — RENT FILM ($4.99) APPLE BENTO PASS
    ========================================================================== */
 
 .tickets-grid {
@@ -869,7 +869,7 @@ html[lang="ja"] .section-title {
 }
 
 @media (min-width: 760px) {
-  .tickets-grid {
+  .tickets-grid:not(.tickets-grid--single) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.6rem;
   }
@@ -892,7 +892,7 @@ html[lang="ja"] .section-title {
   box-shadow: var(--shadow-card-hover);
 }
 
-/* Featured Ownership / Download Card (Dark Obsidian + Kyoto Pine Glow) */
+/* Featured Cinema Rental Pass (Dark Obsidian + Kyoto Pine Glow) */
 .ticket-card--featured {
   background: linear-gradient(160deg, #17211c 0%, #101214 55%, #0c0d0f 100%);
   color: #f5f5f7;
@@ -902,6 +902,29 @@ html[lang="ja"] .section-title {
 
 .ticket-card--featured:hover {
   box-shadow: 0 26px 60px rgba(0, 0, 0, 0.24);
+}
+
+@media (min-width: 820px) {
+  .ticket-card--single {
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(260px, 0.85fr);
+    gap: 2.5rem;
+    align-items: center;
+    padding: 2.35rem 2.5rem;
+  }
+
+  .ticket-card--single .ticket-features {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem 1.4rem;
+    margin-bottom: 0;
+  }
+
+  .ticket-card--single .ticket-action {
+    margin-top: 0;
+    padding-left: 2.35rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+  }
 }
 
 .ticket-badge-row {
@@ -1675,7 +1698,7 @@ html[lang="ja"] .credits-row dt {
 }
 
 /* ==========================================================================
-   8. SCREENING & DOWNLOAD ROOM (watch.html)
+   8. 4K SCREENING ROOM (watch.html)
    ========================================================================== */
 
 body.watch-room {
@@ -1751,15 +1774,14 @@ body.watch-room {
 
 .watch-controls-bar {
   margin-top: 1.25rem;
-  padding: 1.1rem 1.35rem;
+  padding: 1rem 1.35rem;
   border-radius: var(--radius-lg);
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.12);
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.9rem 1.5rem;
+  justify-content: center;
+  text-align: center;
 }
 
 .watch-controls-bar[hidden] {
@@ -1770,12 +1792,6 @@ body.watch-room {
   margin: 0;
   font-size: 0.88rem;
   color: rgba(245, 245, 247, 0.86);
-}
-
-.watch-download-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
 }
 
 .watch-footer {

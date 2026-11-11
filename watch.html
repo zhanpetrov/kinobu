@@ -31,7 +31,7 @@
           <button type="button" class="lang-btn is-active" data-set-lang="en" aria-pressed="true" lang="en">EN</button>
           <button type="button" class="lang-btn" data-set-lang="ja" aria-pressed="false" lang="ja">日本語</button>
         </div>
-        <a class="nav-watch-pill" href="./#watch" id="watch-nav-upgrade" data-i18n="watchRoom.options">Watch Options</a>
+        <a class="nav-watch-pill" href="./#watch" id="watch-nav-upgrade" data-i18n="watchRoom.options">Rent Film</a>
       </div>
     </div>
   </nav>
@@ -68,11 +68,11 @@
             <span class="watch-gate-seal" lang="ja" aria-hidden="true">木乃婦</span>
             <h1 class="watch-gate-title" id="watch-gate-title" data-i18n="watchRoom.gateTitle">Screening Pass Required</h1>
             <p class="watch-gate-copy" id="watch-gate-copy" data-i18n-html="watchRoom.gateCopy">
-              Rent <em>KINOBU</em> for <strong>$4.99</strong> (48-hour 4K stream) or purchase the digital edition for <strong>$14.99</strong> (unlimited streaming + 4K MP4 download). After Stripe checkout, you are automatically brought back here to watch or download.
+              Rent <em>KINOBU</em> for <strong>$4.99</strong> to unlock a 48-hour 4K Ultra HD streaming pass. After Stripe checkout, you are automatically brought back here to watch the full film.
             </p>
             <div class="watch-gate-actions">
               <a class="btn btn--hero-primary" id="watch-gate-rent" href="./#watch" rel="noopener" data-i18n="watchRoom.gateRentCta">Rent Film — $4.99</a>
-              <a class="btn btn--hero-secondary" id="watch-gate-download" href="./#watch" rel="noopener" data-i18n="watchRoom.gateDownloadCta">Download Film — $14.99</a>
+              <a class="btn btn--hero-secondary" href="./" data-i18n="watchRoom.backHome">About the Film</a>
             </div>
           </div>
         </div>
@@ -83,13 +83,9 @@
         </div>
       </div>
 
-      <!-- Post-purchase playback & download controls bar -->
+      <!-- Post-purchase rental status bar -->
       <div class="watch-controls-bar" id="watch-controls-bar" hidden>
         <p class="watch-expiry" id="watch-expiry"></p>
-        <div class="watch-download-group">
-          <a class="btn btn--hero-primary" id="watch-download-en" href="#" download hidden data-i18n="watchRoom.downloadEn">Download 4K MP4 (EN Subtitles)</a>
-          <a class="btn btn--hero-secondary" id="watch-download-ja" href="#" download hidden data-i18n="watchRoom.downloadJa">Download 4K MP4 (Original · No Sub)</a>
-        </div>
       </div>
     </div>
   </main>

@@ -1,6 +1,6 @@
 # CLAUDE.md — Fast Setup Playbook for KINOBU (木乃婦)
 
-This file is automatically read by **Claude Code** (`claude`) when opened in this repository. It gives Claude everything needed to connect **Porkbun Custom Domain**, **PostHog Analytics**, and **Stripe Checkout (`$4.99` Rent / `$14.99` Download)** in minutes.
+This file is automatically read by **Claude Code** (`claude`) when opened in this repository. It gives Claude everything needed to connect **Porkbun Custom Domain**, **PostHog Analytics**, and **Stripe Checkout (`$4.99` Rent Film · 48-Hour 4K Stream)** in minutes.
 
 ---
 
@@ -12,7 +12,7 @@ If you are Chikara (`@chikaramotomura`), clone this repo, open Claude Code in th
 Read CLAUDE.md and set up KINOBU step by step:
 1. Connect my Porkbun domain: [YOUR_DOMAIN.COM]
 2. Connect my PostHog Project API key: [phc_...] (Cloud region: US or EU)
-3. Connect Stripe for $4.99 Rent and $14.99 Download using [Option A: Payment Links / Option B: Cloudflare Worker + R2].
+3. Connect Stripe for the $4.99 48-hour Film Rental using [Option A: Payment Link / Option B: Cloudflare Worker + R2].
 Verify JS syntax, make sure zero secret keys are in git, and push to main.
 ```
 
@@ -24,16 +24,16 @@ Verify JS syntax, make sure zero secret keys are in git, and push to main.
 - **Collaborator Access:** `@chikaramotomura` has been invited with `write` push access.
   - **If `git push` returns `403`:** Have Chikara accept the pending GitHub invitation first at `https://github.com/zhanpetrov/kinobu/invitations` (or check email from GitHub), and verify local auth via `gh auth status`.
 - **Zero-Build Static Architecture:**
-  - `config.js` — **Single control file** for `SITE_URL`, Stripe (`mode`, `WORKER_URL`, `rent.link`, `download.link`), and PostHog (`POSTHOG_KEY`, `POSTHOG_HOST`).
+  - `config.js` — **Single control file** for `SITE_URL`, Stripe (`mode`, `WORKER_URL`, `rent.link`), and PostHog (`POSTHOG_KEY`, `POSTHOG_HOST`).
   - `index.html` — Bilingual (`EN` / `日本語`) Apple Modern main film page (`#trailer`, `#watch`, `#film`, `#stills`, `#director`, `#screenings`, `#credits`).
-  - `watch.html` — Post-purchase Screening & 4K Download Room (`noindex, nofollow`).
+  - `watch.html` — Post-purchase 4K Screening Room (`noindex, nofollow`, streaming-only with `controlslist="nodownload"`).
   - `site.js` — Zero-dependency runtime wiring `window.SITE`, `EN`/`JA` i18n (`?lang=ja`), Stripe `?locale=ja` localization, PostHog async loader + custom funnel events, trailer subtitle edition switcher, and `watch.html` gate unlocking.
   - `styles.css` — Apple Modern stylesheet.
 - **STRICT SECURITY RULE (NEVER VIOLATE):**
   - This is a **public** repository served directly by GitHub Pages.
   - **NEVER** write or commit Stripe secret keys (`sk_live_...`, `sk_test_...`, `rk_live_...`, `whsec_...`), Porkbun API keys (`pk1_...`, `sk1_...`), Cloudflare API tokens, or `.env` files into this repo.
-  - **Safe in `config.js`:** `SITE_URL`, public Stripe Payment Links (`https://buy.stripe.com/...`), `STRIPE_PUBLISHABLE_KEY` (`pk_live_...`), `WORKER_URL`, and `POSTHOG_KEY` (`phc_...` public project ingestion token).
-- **Recommended Execution Order:** Do **Domain (Section 1)** first so your final domain URL is ready to paste into **PostHog (Section 2)** and **Stripe redirects (Section 3)**.
+  - **Safe in `config.js`:** `SITE_URL`, public Stripe Payment Link (`https://buy.stripe.com/...`), `STRIPE_PUBLISHABLE_KEY` (`pk_live_...`), `WORKER_URL`, and `POSTHOG_KEY` (`phc_...` public project ingestion token).
+- **Recommended Execution Order:** Do **Domain (Section 1)** first so your final domain URL is ready to paste into **PostHog (Section 2)** and **Stripe redirect URLs (Section 3)**.
 
 ---
 
@@ -188,48 +188,39 @@ Edit `config.js`:
 | `trailer_subtitle_switched` | `{ edition: "en_sub" \| "ja_nosub", lang: "en" \| "ja" }` | Viewer toggles between `EN Subtitles` and `Original · No Sub` |
 | `language_switched` | `{ lang: "en" \| "ja" }` | Viewer switches site UI between `EN` and `日本語` |
 | `still_opened` | `{ index: 1..6, src, lang }` | Viewer opens a 4K film still in the fullscreen lightbox |
-| `checkout_clicked` | `{ tier: "rent" \| "download", price: "$4.99" \| "$14.99", mode: "links" \| "worker", location: "hero" \| "card" \| "watch_gate", lang }` | Viewer clicks any `$4.99` Rent or `$14.99` Download CTA |
-| `screening_room_unlocked` | `{ plan: "rent" \| "download", delivery: "links" \| "worker", lang }` | Buyer returns from Stripe to `watch.html` and unlocks the film |
-| `film_download_clicked` | `{ edition: "en_sub" \| "ja_nosub", lang }` | `$14.99` buyer clicks either 4K MP4 download button on `watch.html` |
+| `checkout_clicked` | `{ tier: "rent", price: "$4.99", mode: "links" \| "worker", location: "hero" \| "card" \| "watch_gate", lang }` | Viewer clicks any `$4.99` Rent Film CTA |
+| `screening_room_unlocked` | `{ plan: "rent", delivery: "links" \| "worker", lang }` | Buyer returns from Stripe to `watch.html` and unlocks the 4K stream |
 
 > **Suggested PostHog Funnel Insight:** Create a 4-step Funnel in PostHog:
-> `1. $pageview` → `2. trailer_played` → `3. checkout_clicked` → `4. screening_room_unlocked` (broken down by `lang` or `tier`).
+> `1. $pageview` → `2. trailer_played` → `3. checkout_clicked` → `4. screening_room_unlocked` (broken down by `lang`).
 
 ---
 
-## 3. Stripe Fast Setup (`$4.99` Rent & `$14.99` Download)
+## 3. Stripe Fast Setup (`$4.99` Rent Film · 48-Hour 4K Stream)
 
 You have two 4K master feature files (83 min, `3840x2160`, `23.976 fps`, ~21.8 GB each):
 1. **English Subtitled Master:** `Kinobu 384x2160-English subtitle, 23.976.mp4`
 2. **Original Japanese (No Subtitles) Master:** `Kinobu 384x2160-no subtitle, 23.976.mp4`
 
-`site.js` and `watch.html` support **two Stripe modes** out of the box. Pick **Option A** to launch in 5 minutes with zero servers, or **Option B** for an automated Cloudflare Worker + R2 paywall with strict 48-hour expiration.
+`site.js` and `watch.html` support **two Stripe modes** out of the box. Pick **Option A** to launch in 3 minutes with zero servers, or **Option B** for an automated Cloudflare Worker + R2 paywall with strict 48-hour expiration enforcement.
 
 ---
 
-### Option A — Fastest No-Backend Setup: Stripe Payment Links (5 Minutes)
+### Option A — Fastest No-Backend Setup: Stripe Payment Link (3 Minutes)
 
 *(Same proven static pattern used on `howisee.homes`.)*
 
-#### 1. Host the Stream & Download Files
-- **Streaming Player (`v`):** Upload the feature to YouTube as **Unlisted** (supports full 4K 2160p streaming globally at `$0` bandwidth cost). Copy the 11-character YouTube Video ID (e.g., `dQw4w9WgXcQ`).
-- **4K MP4 Downloads (`dl` & `dl_ja`):** Upload both 21.8 GB `.mp4` files to **Cloudflare R2** (recommended — `$0` egress fees on downloads, ~$0.65/mo storage for 44 GB) on a custom/public R2 subdomain with unguessable UUID paths (e.g., `https://media.YOUR_DOMAIN/dl-9f8a7b.../Kinobu-4K-EN-Sub.mp4` and `.../Kinobu-4K-Original-NoSub.mp4`).
+#### 1. Upload the Feature Stream
+- Upload the 4K feature to YouTube as **Unlisted** (supports full 4K 2160p adaptive streaming globally at `$0` bandwidth cost, with optional English closed captions or burned-in subtitles). Copy the 11-character YouTube Video ID (e.g., `dQw4w9WgXcQ`).
 
-#### 2. Create the Two Stripe Payment Links (Dashboard OR Stripe CLI)
+#### 2. Create the `$4.99` Stripe Payment Link (Dashboard OR Stripe CLI)
 
 **Via Stripe CLI (Claude can run this directly after `stripe login`):**
 
 ```bash
 export DOMAIN="YOUR_DOMAIN"
 export YT_ID="YOUR_11_CHAR_YOUTUBE_ID"
-export DL_EN_URL="https://media.YOUR_DOMAIN/SECRET_UUID_1/Kinobu-4K-EN-Sub.mp4"
-export DL_JA_URL="https://media.YOUR_DOMAIN/SECRET_UUID_2/Kinobu-4K-Original-NoSub.mp4"
 
-# URL-encode download links for query string safety
-ENC_EN=$(python3 -c 'import urllib.parse,os; print(urllib.parse.quote(os.environ["DL_EN_URL"], safe=""))')
-ENC_JA=$(python3 -c 'import urllib.parse,os; print(urllib.parse.quote(os.environ["DL_JA_URL"], safe=""))')
-
-# 1. Create Product & Price for $4.99 Rent
 RENT_PROD=$(stripe products create \
   --name="KINOBU — 48-Hour Film Rental (4K Stream)" \
   --description="48-hour streaming pass for KINOBU: Food, Tradition, and Identity (83 min, 4K Ultra HD)." \
@@ -243,35 +234,16 @@ RENT_LINK=$(stripe payment_links create \
   -d "line_items[0][price]=$RENT_PRICE" \
   -d "line_items[0][quantity]=1" \
   -d "after_completion[type]=redirect" \
-  -d "after_completion[redirect][url]=https://${DOMAIN}/watch.html?plan=rent&v=${YT_ID}" \
+  -d "after_completion[redirect][url]=https://${DOMAIN}/watch.html?v=${YT_ID}" \
   -d "allow_promotion_codes=true" \
   | python3 -c 'import sys,json; print(json.load(sys.stdin)["url"])')
 
-# 2. Create Product & Price for $14.99 Download
-DL_PROD=$(stripe products create \
-  --name="KINOBU — Digital Film Download (4K Master + Unlimited Stream)" \
-  --description="Unlimited streaming plus direct 4K Ultra HD MP4 downloads (English-subtitled & unsubtitled Japanese masters)." \
-  | python3 -c 'import sys,json; print(json.load(sys.stdin)["id"])')
-
-DL_PRICE=$(stripe prices create \
-  --unit-amount=1499 --currency=usd --product="$DL_PROD" \
-  | python3 -c 'import sys,json; print(json.load(sys.stdin)["id"])')
-
-DL_LINK=$(stripe payment_links create \
-  -d "line_items[0][price]=$DL_PRICE" \
-  -d "line_items[0][quantity]=1" \
-  -d "after_completion[type]=redirect" \
-  -d "after_completion[redirect][url]=https://${DOMAIN}/watch.html?plan=download&v=${YT_ID}&dl=${ENC_EN}&dl_ja=${ENC_JA}" \
-  -d "allow_promotion_codes=true" \
-  | python3 -c 'import sys,json; print(json.load(sys.stdin)["url"])')
-
-echo "Paste into config.js -> rent.link:     $RENT_LINK"
-echo "Paste into config.js -> download.link: $DL_LINK"
+echo "Paste into config.js -> rent.link: $RENT_LINK"
 ```
 
-*(Or in [Stripe Dashboard → Payment Links](https://dashboard.stripe.com/payment-links): create the `$4.99` link and `$14.99` link with **"After payment → Don't show confirmation page → Redirect customers to your website"** set to the two `https://YOUR_DOMAIN/watch.html?...` URLs above.)*
+*(Or in [Stripe Dashboard → Payment Links](https://dashboard.stripe.com/payment-links): create one `$4.99` link with **"After payment → Don't show confirmation page → Redirect customers to your website"** set to `https://YOUR_DOMAIN/watch.html?v=YOUR_11_CHAR_YOUTUBE_ID`.)*
 
-#### 3. Paste Links into `config.js`
+#### 3. Paste Link into `config.js`
 
 ```js
   mode: "links",
@@ -281,41 +253,34 @@ echo "Paste into config.js -> download.link: $DL_LINK"
     link: "https://buy.stripe.com/YOUR_RENT_499_LINK",
     linkJa: "" // Optional: separate Japanese-titled Payment Link; otherwise ?locale=ja is appended automatically!
   },
-  download: {
-    // ...
-    link: "https://buy.stripe.com/YOUR_DOWNLOAD_1499_LINK",
-    linkJa: ""
-  },
 ```
 
-As soon as `rent.link` and `download.link` are non-empty, all Hero buttons, Watch Pricing Cards, and Screening Room Gate CTAs activate automatically (and localize Stripe Checkout to Japanese when the visitor switches to `日本語`, including Apple Pay, Google Pay, and credit cards).
+As soon as `rent.link` is non-empty, the Hero button, Digital Release rental pass card, and Screening Room Gate CTA activate automatically (and localize Stripe Checkout to Japanese when the visitor switches to `日本語`, including Apple Pay, Google Pay, and credit cards).
 
 ---
 
 ### Option B — Automated 48-Hour Paywall: Cloudflare Worker + Stripe Checkout + R2 (15 Minutes)
 
-Choose Option B if you want **server-verified Stripe Checkout Sessions**, **automatic 48-hour expiration enforcement** for `$4.99` rentals, and **HMAC-signed streaming/download URLs** directly from a private **Cloudflare R2** bucket (zero egress cost even for 21.8 GB 4K downloads).
+Choose Option B if you want **server-verified Stripe Checkout Sessions**, **strict 48-hour expiration enforcement**, and **HMAC-signed 4K streaming** directly from a private **Cloudflare R2** bucket (`$0` egress fees).
 
 #### API Contract Already Wired in `site.js`
-1. `POST {WORKER_URL}/checkout` with JSON `{ "tier": "rent" | "download", "locale": "en" | "ja" }`
+1. `POST {WORKER_URL}/checkout` with JSON `{ "tier": "rent", "locale": "en" | "ja" }`
    - Returns `{ "url": "https://checkout.stripe.com/c/pay/cs_live_..." }`
    - Sets Stripe `success_url` to `https://YOUR_DOMAIN/watch.html?session_id={CHECKOUT_SESSION_ID}` and `cancel_url` to `https://YOUR_DOMAIN/#watch`.
 2. `GET {WORKER_URL}/access?session_id=cs_live_...`
    - Fetches the Checkout Session from Stripe API using `STRIPE_SECRET_KEY` (stored safely in Cloudflare Worker Secrets, **never** in git).
    - Verifies `session.payment_status === "paid"`.
-   - If `session.metadata.tier === "rent"`, checks `(Date.now()/1000) < session.created + 172800` (48 hours). If expired, returns HTTP `403` (`watch.html` automatically displays the localized *"Access Expired"* screen).
+   - Checks `(Date.now()/1000) < session.created + 172800` (48 hours). If expired, returns HTTP `403` (`watch.html` automatically displays the localized *"Access Expired"* screen).
    - Returns JSON:
      ```json
      {
        "streamUrl": "https://...",
        "streamUrlJa": "https://...",
-       "downloadUrl": "https://... (only included when tier === 'download')",
-       "downloadUrlJa": "https://... (only included when tier === 'download')",
-       "expiresAt": "2026-11-13T04:00:00.000Z (ISO string for rent, or null for download)"
+       "expiresAt": "2026-11-13T04:00:00.000Z"
      }
      ```
-3. `GET {WORKER_URL}/media/:edition?exp=...&dl=0|1&sig=...`
-   - Verifies HMAC signature + expiration, supports HTTP `Range` requests (`206 Partial Content`) from R2 so 4K scrubbing and 21.8 GB resumable downloads work cleanly in Safari, Chrome, and iOS.
+3. `GET {WORKER_URL}/media/:edition?exp=...&sig=...`
+   - Verifies HMAC signature + 48h expiration, streams the 4K MP4 with HTTP `Range` support (`206 Partial Content`) from R2 so scrubbing and AirPlay work seamlessly in Safari, Chrome, and iOS.
 
 #### Ready-to-Deploy Worker Scaffold (Deploy Outside This Static Repo)
 
@@ -343,7 +308,7 @@ binding = "FILM_BUCKET"
 bucket_name = "kinobu-masters"
 ```
 
-Upload the two 4K masters to R2 (`wrangler r2 bucket create kinobu-masters`, then upload via Cloudflare R2 Dashboard or `rclone` for >300 MB multipart uploads), set Worker secrets:
+Upload the 4K masters to R2 (`wrangler r2 bucket create kinobu-masters`, then upload via Cloudflare R2 Dashboard or `rclone` for >300 MB multipart uploads), and set Worker secrets:
 
 ```bash
 npx wrangler secret put STRIPE_SECRET_KEY      # sk_live_...
@@ -359,8 +324,8 @@ const CORS_HEADERS = (origin, allowed) => ({
   "Access-Control-Allow-Headers": "Content-Type, Accept"
 });
 
-async function signUrl(baseUrl, edition, expUnix, isDownload, secret) {
-  const payload = `${edition}:${expUnix}:${isDownload ? "1" : "0"}`;
+async function signStreamUrl(baseUrl, edition, expUnix, secret) {
+  const payload = `${edition}:${expUnix}`;
   const key = await crypto.subtle.importKey(
     "raw",
     new TextEncoder().encode(secret),
@@ -370,7 +335,7 @@ async function signUrl(baseUrl, edition, expUnix, isDownload, secret) {
   );
   const sigBuf = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(payload));
   const sig = [...new Uint8Array(sigBuf)].map((b) => b.toString(16).padStart(2, "0")).join("");
-  return `${baseUrl}/media/${edition}?exp=${expUnix}&dl=${isDownload ? "1" : "0"}&sig=${sig}`;
+  return `${baseUrl}/media/${edition}?exp=${expUnix}&sig=${sig}`;
 }
 
 export default {
@@ -383,21 +348,14 @@ export default {
       return new Response(null, { status: 204, headers: cors });
     }
 
-    // 1. POST /checkout -> Create Stripe Checkout Session ($4.99 rent | $14.99 download)
+    // 1. POST /checkout -> Create Stripe Checkout Session ($4.99 48-hour rental)
     if (request.method === "POST" && url.pathname === "/checkout") {
       const body = await request.json().catch(() => ({}));
-      const tier = body.tier === "download" ? "download" : "rent";
       const locale = body.locale === "ja" ? "ja" : "en";
-
-      const amount = tier === "download" ? "1499" : "499";
       const name =
-        tier === "download"
-          ? locale === "ja"
-            ? "『木乃婦 KINOBU』本編ダウンロード購入（4Kマスター＋無期限配信）"
-            : "KINOBU — Digital Film Download (4K Master + Unlimited Stream)"
-          : locale === "ja"
-            ? "『木乃婦 KINOBU』48時間レンタル視聴（4K配信）"
-            : "KINOBU — 48-Hour Film Rental (4K Stream)";
+        locale === "ja"
+          ? "『木乃婦 KINOBU』48時間レンタル視聴（4K配信）"
+          : "KINOBU — 48-Hour Film Rental (4K Stream)";
 
       const form = new URLSearchParams({
         mode: "payment",
@@ -405,10 +363,10 @@ export default {
         allow_promotion_codes: "true",
         success_url: `${env.SITE_ORIGIN}/watch.html?session_id={CHECKOUT_SESSION_ID}${locale === "ja" ? "&lang=ja" : ""}`,
         cancel_url: `${env.SITE_ORIGIN}/${locale === "ja" ? "?lang=ja" : ""}#watch`,
-        "metadata[tier]": tier,
+        "metadata[tier]": "rent",
         "line_items[0][quantity]": "1",
         "line_items[0][price_data][currency]": "usd",
-        "line_items[0][price_data][unit_amount]": amount,
+        "line_items[0][price_data][unit_amount]": "499",
         "line_items[0][price_data][product_data][name]": name
       });
 
@@ -427,7 +385,7 @@ export default {
       return Response.json({ url: session.url }, { headers: cors });
     }
 
-    // 2. GET /access?session_id=... -> Verify payment & mint signed URLs
+    // 2. GET /access?session_id=... -> Verify payment & mint 48h signed stream URLs
     if (request.method === "GET" && url.pathname === "/access") {
       const sessionId = url.searchParams.get("session_id") || "";
       if (!/^cs_(test|live)_[A-Za-z0-9]+$/.test(sessionId)) {
@@ -443,43 +401,35 @@ export default {
         return Response.json({ error: "Unpaid session" }, { status: 403, headers: cors });
       }
 
-      const tier = session.metadata && session.metadata.tier === "download" ? "download" : "rent";
       const nowSec = Math.floor(Date.now() / 1000);
       const rentExpirySec = (session.created || nowSec) + 48 * 3600;
 
-      if (tier === "rent" && nowSec > rentExpirySec) {
+      if (nowSec > rentExpirySec) {
         return Response.json({ error: "Rental window expired" }, { status: 403, headers: cors });
       }
 
       const baseUrl = `${url.protocol}//${url.host}`;
-      const linkExp = tier === "rent" ? rentExpirySec : nowSec + 24 * 3600;
-
-      const payload = {
-        streamUrl: await signUrl(baseUrl, "en", linkExp, false, env.SIGNING_SECRET),
-        streamUrlJa: await signUrl(baseUrl, "ja", linkExp, false, env.SIGNING_SECRET),
-        expiresAt: tier === "rent" ? new Date(rentExpirySec * 1000).toISOString() : null
-      };
-
-      if (tier === "download") {
-        payload.downloadUrl = await signUrl(baseUrl, "en", linkExp, true, env.SIGNING_SECRET);
-        payload.downloadUrlJa = await signUrl(baseUrl, "ja", linkExp, true, env.SIGNING_SECRET);
-      }
-
-      return Response.json(payload, { headers: cors });
+      return Response.json(
+        {
+          streamUrl: await signStreamUrl(baseUrl, "en", rentExpirySec, env.SIGNING_SECRET),
+          streamUrlJa: await signStreamUrl(baseUrl, "ja", rentExpirySec, env.SIGNING_SECRET),
+          expiresAt: new Date(rentExpirySec * 1000).toISOString()
+        },
+        { headers: cors }
+      );
     }
 
-    // 3. GET /media/:edition -> Stream or Download 4K MP4 from R2 with Range support
+    // 3. GET /media/:edition -> Stream 4K MP4 from R2 with HTTP Range support
     if (request.method === "GET" && url.pathname.startsWith("/media/")) {
       const edition = url.pathname.endsWith("/ja") ? "ja" : "en";
       const exp = parseInt(url.searchParams.get("exp") || "0", 10);
-      const dl = url.searchParams.get("dl") === "1";
       const sig = url.searchParams.get("sig") || "";
 
       if (!exp || Math.floor(Date.now() / 1000) > exp) {
-        return new Response("Link expired", { status: 403 });
+        return new Response("Rental expired", { status: 403 });
       }
 
-      const expectedUrl = await signUrl(`${url.protocol}//${url.host}`, edition, exp, dl, env.SIGNING_SECRET);
+      const expectedUrl = await signStreamUrl(`${url.protocol}//${url.host}`, edition, exp, env.SIGNING_SECRET);
       const expectedSig = new URL(expectedUrl).searchParams.get("sig");
       if (sig !== expectedSig) {
         return new Response("Invalid signature", { status: 403 });
@@ -495,10 +445,7 @@ export default {
       headers.set("Content-Type", "video/mp4");
       headers.set("Accept-Ranges", "bytes");
       headers.set("ETag", object.httpEtag);
-      if (dl) {
-        const filename = edition === "ja" ? "KINOBU-4K-Original-Japanese.mp4" : "KINOBU-4K-English-Subtitles.mp4";
-        headers.set("Content-Disposition", `attachment; filename="${filename}"`);
-      }
+      headers.set("Content-Disposition", "inline");
 
       if (object.range) {
         const { offset, length } = object.range;
@@ -548,6 +495,6 @@ git push origin main
 ```
 
 After pushing:
-1. Open `https://YOUR_DOMAIN` (and `https://YOUR_DOMAIN/?lang=ja`) — verify both `$4.99` Rent and `$14.99` Download buttons are active.
+1. Open `https://YOUR_DOMAIN` (and `https://YOUR_DOMAIN/?lang=ja`) — verify the `$4.99` Rent Film button is active in both English and Japanese.
 2. Play the trailer and click `日本語` — verify `trailer_played` and `language_switched` appear in **PostHog → Activity → Live Events**.
-3. Complete a Stripe test purchase (or `100% off` promo code on live link) — verify redirect to `https://YOUR_DOMAIN/watch.html` unlocks playback and (for `$14.99`) reveals both 4K MP4 download buttons.
+3. Complete a Stripe test purchase (or `100% off` promo code on live link) — verify redirect to `https://YOUR_DOMAIN/watch.html` unlocks 4K Screening Room playback.

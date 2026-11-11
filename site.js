@@ -1,7 +1,7 @@
 /* ==========================================================================
    KINOBU (木乃婦) — Configuration Wiring, Bilingual (EN / 日本語),
-   Trailer Subtitle Switcher, Bento Lightbox & Stripe Screening/Download Room.
-   Reads site & Stripe settings exclusively from window.SITE (config.js).
+   Trailer Subtitle Switcher, Bento Lightbox & Stripe 4K Screening Room.
+   Reads site, PostHog & Stripe settings exclusively from window.SITE (config.js).
    ========================================================================== */
 
 (function () {
@@ -14,7 +14,7 @@
     en: {
       pageTitle: "KINOBU (\u6728\u4e43\u5a66) \u2014 Food, Tradition, and Identity | A film by Chikara Motomura",
       watchPageTitle: "Screening Room \u2014 KINOBU (\u6728\u4e43\u5a66)",
-      skip: "Skip to watch options",
+      skip: "Skip to rental pass",
 
       "nav.trailer": "Trailer",
       "nav.watch": "Watch",
@@ -23,7 +23,7 @@
       "nav.director": "Filmmaker",
       "nav.screenings": "Screenings",
       "nav.credits": "Credits",
-      "nav.cta": "Rent / Download",
+      "nav.cta": "Rent Film",
       "nav.menu": "Menu",
       "nav.close": "Close",
 
@@ -33,7 +33,7 @@
       "hero.facts":
         'Feature Documentary &middot; <span class="nowrap">83 min</span> &middot; <span class="nowrap">4K Ultra HD</span> &middot; <span class="nowrap">Kyoto, Japan</span>',
       "hero.ctaRent": "Rent Film \u2014 $4.99",
-      "hero.ctaDownload": "Download 4K \u2014 $14.99",
+      "hero.ctaTrailer": "Watch Trailer",
 
       "trailer.regionAria": "KINOBU official 4K trailer",
       "trailer.kicker": "Official Trailer",
@@ -48,17 +48,12 @@
       "watch.eyebrow": "01 \u00b7 Digital Release",
       "watch.heading": "Watch Kinobu at Home.",
       "watch.lead":
-        "Stream the complete 83-minute documentary instantly, or download the master edition to keep in your personal cinema library.",
-      "watch.rentBadge": "48-Hour Rental",
-      "watch.downloadBadge": "Digital Ownership \u00b7 4K Master",
+        "Stream the complete 83-minute documentary instantly in up to 4K Ultra HD, with both English-subtitled and original Japanese editions included.",
+      "watch.rentBadge": "48-Hour Rental \u00b7 4K Ultra HD",
       "watch.rentFeat1": "Instant 83-minute feature stream in up to 4K Ultra HD",
       "watch.rentFeat2": "48-hour viewing window from moment of purchase",
       "watch.rentFeat3": "Switch between English subtitles & original Japanese",
       "watch.rentFeat4": "Watch on Mac, PC, iPhone, iPad, or AirPlay",
-      "watch.dlFeat1": "Unlimited on-demand streaming in the Screening Room",
-      "watch.dlFeat2": "Direct DRM-free 4K MP4 download (3840\u00d72160 \u00b7 23.976 fps)",
-      "watch.dlFeat3": "Includes both English-subtitled & unsubtitled Japanese files",
-      "watch.dlFeat4": "Yours to keep permanently for offline viewing",
       "watch.soon": "Stripe checkout opens soon",
       "watch.opening": "Opening Stripe Checkout\u2026",
       "watch.error": "Unable to reach Stripe checkout. Please try again.",
@@ -68,9 +63,6 @@
       "tier.rent.label": "Rent Film",
       "tier.rent.terms":
         "48-hour streaming pass in up to 4K Ultra HD. Includes both English-subtitled and original Japanese editions.",
-      "tier.download.label": "Download Film",
-      "tier.download.terms":
-        "Digital ownership with unlimited streaming plus direct 4K Ultra HD MP4 download (23.976 fps, English-subtitled & unsubtitled masters).",
 
       "film.eyebrow": "02 \u00b7 The Story",
       "film.heading": "Intensity and Serenity in the Heart of Kyoto.",
@@ -178,50 +170,45 @@
         '<span class="credits-thanks-grid"><span>Takuji Takahashi</span><span>Staff of Kinobu Restaurant</span><span>Guests of Kinobu Restaurant</span><span>Yukitoshi Hirota</span><span>Gion Festival Iwatoyama Hozonkai</span><span>Takeshi Kadokami</span><span>Shigefumi Fukuyama</span><span>Uosaburo</span><span>Tankuma Kitamise Honten</span><span>Seiwasou</span><span>Arashiyama Benkei</span><span>Takeshigerou</span><span>Toriyone</span><span>Manshige</span><span>Byodoin Chikurin</span><span>Yasumi Kaji</span><span>Eri Kitamura</span></span>',
 
       "footer.rights": "\u00a9 Chikara Motomura. All rights reserved.",
-      "footer.watch": "Rent / Download",
+      "footer.watch": "Rent Film",
       "footer.room": "Screening Room",
       "footer.contact": "Contact",
 
       "watchRoom.skip": "Skip to player",
       "watchRoom.backAria": "Return to KINOBU main page",
-      "watchRoom.options": "Watch Options",
+      "watchRoom.options": "Rent Film",
       "watchRoom.vfAria": "KINOBU full film player",
       "watchRoom.modeDefault": "Screening Room",
       "watchRoom.modeRent": "48-Hour Rental \u00b7 4K",
-      "watchRoom.modeDownload": "Digital Ownership \u00b7 4K Master",
       "watchRoom.hudDir": "Directed by Chikara Motomura",
       "watchRoom.hudAudio": "Japanese \u00b7 English Subtitles",
       "watchRoom.gateTitle": "Screening Pass Required",
       "watchRoom.gateCopy":
-        "Rent <em>KINOBU</em> for <strong>$4.99</strong> (48-hour 4K stream) or purchase the digital edition for <strong>$14.99</strong> (unlimited streaming + 4K MP4 download). After Stripe checkout, you are automatically brought back here to watch or download.",
+        "Rent <em>KINOBU</em> for <strong>$4.99</strong> to unlock a 48-hour 4K Ultra HD streaming pass. After Stripe checkout, you are automatically brought back here to watch the full film.",
       "watchRoom.gateRentCta": "Rent Film \u2014 $4.99",
-      "watchRoom.gateDownloadCta": "Download Film \u2014 $14.99",
-      "watchRoom.downloadEn": "Download 4K MP4 (EN Subtitles)",
-      "watchRoom.downloadJa": "Download 4K MP4 (Original \u00b7 No Sub)",
+      "watchRoom.backHome": "About the Film",
       "watchRoom.verifyingTitle": "Verifying Screening Pass",
       "watchRoom.verifyingCopy": "Confirming your Stripe order and preparing 4K playback\u2026",
       "watchRoom.expiredTitle": "Access Expired or Invalid",
       "watchRoom.expiredCopy":
         "This screening pass could not be verified or its 48-hour rental window has ended. Return to the main page or contact us if you need assistance with your order.",
       "watchRoom.rentalUntil": "48-hour rental active \u00b7 Available until ",
-      "watchRoom.permanent": "Digital ownership active \u00b7 Stream anytime or download your 4K master below.",
-      "watchRoom.ytRent": "Thank you for renting KINOBU. Bookmark this page \u2014 your rental pass is active for 48 hours.",
-      "watchRoom.ytDownload": "Thank you for purchasing KINOBU. Bookmark this page to stream anytime or download your 4K file."
+      "watchRoom.ytRent": "Thank you for renting KINOBU. Bookmark this page \u2014 your rental pass is active for 48 hours."
     },
 
     ja: {
       pageTitle: "\u6728\u4e43\u5a66 KINOBU \u2014 \u98df\u3001\u4f1d\u7d71\u3001\u30a2\u30a4\u30c7\u30f3\u30c6\u30a3\u30c6\u30a3 | \u672c\u6751 \u529b \u76e3\u7763\u4f5c\u54c1",
       watchPageTitle: "\u30b9\u30af\u30ea\u30fc\u30cb\u30f3\u30b0\u30eb\u30fc\u30e0 \u2014 \u6728\u4e43\u5a66 KINOBU",
-      skip: "\u8996\u8074\u30fb\u8cfc\u5165\u6848\u5185\u3078\u30b9\u30ad\u30c3\u30d7",
+      skip: "\u30ec\u30f3\u30bf\u30eb\u6848\u5185\u3078\u30b9\u30ad\u30c3\u30d7",
 
       "nav.trailer": "\u4e88\u544a\u7de8",
-      "nav.watch": "\u8996\u8074\u30fb\u8cfc\u5165",
+      "nav.watch": "\u8996\u8074\u6848\u5185",
       "nav.film": "\u4f5c\u54c1\u7d39\u4ecb",
       "nav.stills": "\u5834\u9762\u5199\u771f",
       "nav.director": "\u76e3\u7763",
       "nav.screenings": "\u4e0a\u6620\u30fb\u8a55\u4fa1",
       "nav.credits": "\u30af\u30ec\u30b8\u30c3\u30c8",
-      "nav.cta": "\u30ec\u30f3\u30bf\u30eb / \u8cfc\u5165",
+      "nav.cta": "\u30ec\u30f3\u30bf\u30eb\u8996\u8074",
       "nav.menu": "\u30e1\u30cb\u30e5\u30fc",
       "nav.close": "\u9589\u3058\u308b",
 
@@ -231,7 +218,7 @@
       "hero.facts":
         '\u9577\u7de8\u30c9\u30ad\u30e5\u30e1\u30f3\u30bf\u30ea\u30fc &middot; <span class="nowrap">83\u5206</span> &middot; <span class="nowrap">4K Ultra HD</span> &middot; <span class="nowrap">\u4eac\u90fd</span>',
       "hero.ctaRent": "\u30ec\u30f3\u30bf\u30eb\u8996\u8074 \u2014 $4.99",
-      "hero.ctaDownload": "4K\u30c0\u30a6\u30f3\u30ed\u30fc\u30c9\u8cfc\u5165 \u2014 $14.99",
+      "hero.ctaTrailer": "\u4e88\u544a\u7de8\u3092\u898b\u308b",
 
       "trailer.regionAria": "\u300e\u6728\u4e43\u5a66\u300f\u516c\u5f0f4K\u4e88\u544a\u7de8",
       "trailer.kicker": "\u516c\u5f0f\u4e88\u544a\u7de8",
@@ -246,17 +233,12 @@
       "watch.eyebrow": "01 \u00b7 \u30c7\u30b8\u30bf\u30eb\u914d\u4fe1",
       "watch.heading": "\u3054\u81ea\u5b85\u3067\u300e\u6728\u4e43\u5a66\u300f\u3092\u9451\u8cde\u3059\u308b\u3002",
       "watch.lead":
-        "83\u5206\u306e\u672c\u7de8\u30924K\u9ad8\u753b\u8cea\u3067\u3059\u3050\u306b\u30b9\u30c8\u30ea\u30fc\u30df\u30f3\u30b0\u518d\u751f\u3001\u307e\u305f\u306f4K\u30de\u30b9\u30bf\u30fc\u7248\u3092\u30c0\u30a6\u30f3\u30ed\u30fc\u30c9\u3057\u3066\u304a\u624b\u5143\u306b\u6c38\u4e45\u4fdd\u5b58\u3044\u305f\u3060\u3051\u307e\u3059\u3002",
-      "watch.rentBadge": "48\u6642\u9593\u30ec\u30f3\u30bf\u30eb",
-      "watch.downloadBadge": "\u30c7\u30b8\u30bf\u30eb\u8cfc\u5165 \u00b7 4K\u30de\u30b9\u30bf\u30fc\u4fdd\u5b58",
+        "83\u5206\u306e\u672c\u7de8\u3092\u6700\u9ad84K Ultra HD\u753b\u8cea\u3067\u5373\u6642\u30b9\u30c8\u30ea\u30fc\u30df\u30f3\u30b0\u518d\u751f\u3002\u82f1\u8a9e\u5b57\u5e55\u7248\u30fb\u65e5\u672c\u8a9e\u30aa\u30ea\u30b8\u30ca\u30eb\u7248\uff08\u5b57\u5e55\u306a\u3057\uff09\u306e\u4e21\u65b9\u3092\u304a\u697d\u3057\u307f\u3044\u305f\u3060\u3051\u307e\u3059\u3002",
+      "watch.rentBadge": "48\u6642\u9593\u30ec\u30f3\u30bf\u30eb \u00b7 4K Ultra HD",
       "watch.rentFeat1": "83\u5206\u306e\u672c\u7de8\u3092\u6700\u9ad84K Ultra HD\u753b\u8cea\u3067\u5373\u6642\u30b9\u30c8\u30ea\u30fc\u30df\u30f3\u30b0",
       "watch.rentFeat2": "\u3054\u8cfc\u5165\u6642\u70b9\u304b\u308948\u6642\u9593\u3044\u3064\u3067\u3082\u8996\u8074\u53ef\u80fd",
       "watch.rentFeat3": "\u65e5\u672c\u8a9e\u30aa\u30ea\u30b8\u30ca\u30eb\u7248\uff08\u5b57\u5e55\u306a\u3057\uff09\u3068\u82f1\u8a9e\u5b57\u5e55\u7248\u306e\u4e21\u65b9\u306b\u5bfe\u5fdc",
       "watch.rentFeat4": "Mac\u30fbPC\u30fbiPhone\u30fbiPad\u30fbAirPlay\u3067\u9451\u8cde\u53ef\u80fd",
-      "watch.dlFeat1": "\u30b9\u30af\u30ea\u30fc\u30cb\u30f3\u30b0\u30eb\u30fc\u30e0\u3067\u7121\u671f\u9650\u306e\u30aa\u30f3\u30c7\u30de\u30f3\u30c9\u518d\u751f",
-      "watch.dlFeat2": "DRM\u30d5\u30ea\u30fc\u306e4K MP4\u672c\u7de8\uff083840\u00d72160 \u00b7 23.976 fps\uff09\u3092\u76f4\u63a5\u30c0\u30a6\u30f3\u30ed\u30fc\u30c9",
-      "watch.dlFeat3": "\u65e5\u672c\u8a9e\u30aa\u30ea\u30b8\u30ca\u30eb\u7248\uff08\u5b57\u5e55\u306a\u3057\uff09\u30fb\u82f1\u8a9e\u5b57\u5e55\u7248\u306e\u4e21\u30de\u30b9\u30bf\u30fc\u3092\u53ce\u9332",
-      "watch.dlFeat4": "\u30aa\u30d5\u30e9\u30a4\u30f3\u74b0\u5883\u3067\u3082\u304a\u624b\u5143\u306e\u30c7\u30d0\u30a4\u30b9\u306b\u6c38\u4e45\u4fdd\u5b58",
       "watch.soon": "Stripe\u6c7a\u6e08\u53d7\u4ed8\u306f\u307e\u3082\u306a\u304f\u958b\u59cb\u3057\u307e\u3059",
       "watch.opening": "Stripe\u6c7a\u6e08\u753b\u9762\u3092\u958b\u3044\u3066\u3044\u307e\u3059\u2026",
       "watch.error": "\u6c7a\u6e08\u30b5\u30fc\u30d0\u30fc\u306b\u63a5\u7d9a\u3067\u304d\u307e\u305b\u3093\u3067\u3057\u305f\u3002\u3082\u3046\u4e00\u5ea6\u304a\u8a66\u3057\u304f\u3060\u3055\u3044\u3002",
@@ -266,9 +248,6 @@
       "tier.rent.label": "\u30ec\u30f3\u30bf\u30eb\u8996\u8074",
       "tier.rent.terms":
         "48\u6642\u9593\u306e4K Ultra HD\u30b9\u30c8\u30ea\u30fc\u30df\u30f3\u30b0\u8996\u8074\u30d1\u30b9\u3002\u82f1\u8a9e\u5b57\u5e55\u7248\u30fb\u65e5\u672c\u8a9e\u30aa\u30ea\u30b8\u30ca\u30eb\u7248\uff08\u5b57\u5e55\u306a\u3057\uff09\u306e\u4e21\u65b9\u3092\u3054\u89a7\u3044\u305f\u3060\u3051\u307e\u3059\u3002",
-      "tier.download.label": "\u672c\u7de8\u30c0\u30a6\u30f3\u30ed\u30fc\u30c9\u8cfc\u5165",
-      "tier.download.terms":
-        "\u7121\u671f\u9650\u30b9\u30c8\u30ea\u30fc\u30df\u30f3\u30b0\u8996\u8074\u306b\u52a0\u3048\u30014K Ultra HD\u672c\u7de8MP4\u30d5\u30a1\u30a4\u30eb\uff08\u82f1\u8a9e\u5b57\u5e55\u7248\uff0f\u5b57\u5e55\u306a\u3057\u30aa\u30ea\u30b8\u30ca\u30eb\u7248\uff09\u3092\u76f4\u63a5\u30c0\u30a6\u30f3\u30ed\u30fc\u30c9\u4fdd\u5b58\u3002",
 
       "film.eyebrow": "02 \u00b7 \u4f5c\u54c1\u7d39\u4ecb",
       "film.heading": "\u4eac\u90fd\u306e\u9759\u5bc2\u3068\u3001\u53a8\u623f\u306e\u71b1\u91cf\u3002",
@@ -376,35 +355,30 @@
         '<span class="credits-thanks-grid"><span>\u9ad8\u6a4b \u62d3\u5150</span><span>\u6728\u4e43\u5a66\u30b9\u30bf\u30c3\u30d5\u306e\u7686\u69d8</span><span>\u6728\u4e43\u5a66\u306e\u304a\u5ba2\u69d8</span><span>\u5ee3\u7530 \u5e78\u7a14</span><span>\u7947\u5712\u796d \u5ca9\u6238\u5c71\u4fdd\u5b58\u4f1a</span><span>\u9580\u4e0a \u6b66\u53f8</span><span>Shigefumi Fukuyama</span><span>\u9b5a\u4e09\u697c</span><span>\u305f\u3093\u718a\u5317\u5e97 \u672c\u5e97</span><span>\u6e05\u548c\u8358</span><span>\u5d50\u5c71\u8fa8\u6176</span><span>\u7af9\u8302\u697c</span><span>\u9ce5\u7c73</span><span>\u842c\u91cd</span><span>\u5e73\u7b49\u9662 \u8868\u53c2\u9053 \u7af9\u6797</span><span>Yasumi Kaji</span><span>Eri Kitamura</span></span>',
 
       "footer.rights": "\u00a9 Chikara Motomura. All rights reserved.",
-      "footer.watch": "\u30ec\u30f3\u30bf\u30eb / \u8cfc\u5165",
+      "footer.watch": "\u30ec\u30f3\u30bf\u30eb\u8996\u8074",
       "footer.room": "\u30b9\u30af\u30ea\u30fc\u30cb\u30f3\u30b0\u30eb\u30fc\u30e0",
       "footer.contact": "\u304a\u554f\u3044\u5408\u308f\u305b",
 
       "watchRoom.skip": "\u30d7\u30ec\u30fc\u30e4\u30fc\u3078\u30b9\u30ad\u30c3\u30d7",
       "watchRoom.backAria": "\u300e\u6728\u4e43\u5a66\u300f\u30c8\u30c3\u30d7\u30da\u30fc\u30b8\u3078\u623b\u308b",
-      "watchRoom.options": "\u8cfc\u5165\u30d7\u30e9\u30f3",
+      "watchRoom.options": "\u30ec\u30f3\u30bf\u30eb\u8996\u8074",
       "watchRoom.vfAria": "\u300e\u6728\u4e43\u5a66\u300f\u672c\u7de8\u30d7\u30ec\u30fc\u30e4\u30fc",
       "watchRoom.modeDefault": "\u30b9\u30af\u30ea\u30fc\u30cb\u30f3\u30b0\u30eb\u30fc\u30e0",
       "watchRoom.modeRent": "48\u6642\u9593\u30ec\u30f3\u30bf\u30eb \u00b7 4K",
-      "watchRoom.modeDownload": "\u30c7\u30b8\u30bf\u30eb\u8cfc\u5165 \u00b7 4K\u30de\u30b9\u30bf\u30fc",
       "watchRoom.hudDir": "\u76e3\u7763\uff1a\u672c\u6751 \u529b",
       "watchRoom.hudAudio": "\u65e5\u672c\u8a9e\u30aa\u30ea\u30b8\u30ca\u30eb \u00b7 \u82f1\u8a9e\u5b57\u5e55\u5bfe\u5fdc",
       "watchRoom.gateTitle": "\u8996\u8074\u30d1\u30b9\u304c\u5fc5\u8981\u3067\u3059",
       "watchRoom.gateCopy":
-        "\u300e\u6728\u4e43\u5a66\u300f\u306f<strong>$4.99</strong>\uff0848\u6642\u95934K\u30b9\u30c8\u30ea\u30fc\u30df\u30f3\u30b0\uff09\u307e\u305f\u306f<strong>$14.99</strong>\uff08\u7121\u671f\u9650\u518d\u751f\uff0b4K MP4\u672c\u7de8\u30c0\u30a6\u30f3\u30ed\u30fc\u30c9\uff09\u306b\u3066\u3054\u9451\u8cde\u3044\u305f\u3060\u3051\u307e\u3059\u3002Stripe\u3067\u306e\u304a\u652f\u6255\u3044\u5b8c\u4e86\u5f8c\u3001\u81ea\u52d5\u7684\u306b\u3053\u306e\u30da\u30fc\u30b8\u3067\u518d\u751f\u30fb\u30c0\u30a6\u30f3\u30ed\u30fc\u30c9\u304c\u89e3\u7981\u3055\u308c\u307e\u3059\u3002",
+        "\u300e\u6728\u4e43\u5a66\u300f\u306f<strong>$4.99</strong>\uff0848\u6642\u9593\u306e4K Ultra HD\u30b9\u30c8\u30ea\u30fc\u30df\u30f3\u30b0\u8996\u8074\u30d1\u30b9\uff09\u306b\u3066\u3054\u9451\u8cde\u3044\u305f\u3060\u3051\u307e\u3059\u3002Stripe\u3067\u306e\u304a\u652f\u6255\u3044\u5b8c\u4e86\u5f8c\u3001\u81ea\u52d5\u7684\u306b\u3053\u306e\u30da\u30fc\u30b8\u3067\u672c\u7de8\u518d\u751f\u304c\u89e3\u7981\u3055\u308c\u307e\u3059\u3002",
       "watchRoom.gateRentCta": "\u30ec\u30f3\u30bf\u30eb\u8996\u8074 \u2014 $4.99",
-      "watchRoom.gateDownloadCta": "\u672c\u7de8\u30c0\u30a6\u30f3\u30ed\u30fc\u30c9\u8cfc\u5165 \u2014 $14.99",
-      "watchRoom.downloadEn": "4K MP4\u3092\u30c0\u30a6\u30f3\u30ed\u30fc\u30c9\uff08\u82f1\u8a9e\u5b57\u5e55\u7248\uff09",
-      "watchRoom.downloadJa": "4K MP4\u3092\u30c0\u30a6\u30f3\u30ed\u30fc\u30c9\uff08\u5b57\u5e55\u306a\u3057\u30aa\u30ea\u30b8\u30ca\u30eb\u7248\uff09",
+      "watchRoom.backHome": "\u4f5c\u54c1\u30da\u30fc\u30b8\u3078\u623b\u308b",
       "watchRoom.verifyingTitle": "\u8996\u8074\u30d1\u30b9\u3092\u78ba\u8a8d\u3057\u3066\u3044\u307e\u3059",
       "watchRoom.verifyingCopy": "Stripe\u306e\u6c7a\u6e08\u60c5\u5831\u3092\u7167\u4f1a\u3057\u30014K\u518d\u751f\u306e\u6e96\u5099\u3092\u884c\u3063\u3066\u3044\u307e\u3059\u2026",
       "watchRoom.expiredTitle": "\u30a2\u30af\u30bb\u30b9\u671f\u9650\u5207\u308c\u30fb\u7121\u52b9\u306a\u30ea\u30f3\u30af",
       "watchRoom.expiredCopy":
         "\u8996\u8074\u30d1\u30b9\u3092\u78ba\u8a8d\u3067\u304d\u306a\u3044\u304b\u300148\u6642\u9593\u306e\u30ec\u30f3\u30bf\u30eb\u671f\u9593\u304c\u7d42\u4e86\u3057\u3066\u3044\u307e\u3059\u3002\u30c8\u30c3\u30d7\u30da\u30fc\u30b8\u3078\u623b\u308b\u304b\u3001\u30b5\u30dd\u30fc\u30c8\u307e\u3067\u304a\u554f\u3044\u5408\u308f\u305b\u304f\u3060\u3055\u3044\u3002",
       "watchRoom.rentalUntil": "48\u6642\u9593\u30ec\u30f3\u30bf\u30eb\u6709\u52b9 \u00b7 \u8996\u8074\u671f\u9650\uff1a",
-      "watchRoom.permanent": "\u30c7\u30b8\u30bf\u30eb\u8cfc\u5165\u6e08\u307f \u00b7 \u3044\u3064\u3067\u3082\u518d\u751f\u30fb\u4e0b\u8a18\u30dc\u30bf\u30f3\u304b\u30894K\u672c\u7de8\u3092\u4fdd\u5b58\u3067\u304d\u307e\u3059\u3002",
-      "watchRoom.ytRent": "\u300e\u6728\u4e43\u5a66\u300f\u306e\u30ec\u30f3\u30bf\u30eb\u3042\u308a\u304c\u3068\u3046\u3054\u3056\u3044\u307e\u3059\u3002\u3053\u306e\u30da\u30fc\u30b8\u3092\u30d6\u30c3\u30af\u30de\u30fc\u30af\u3057\u3066\u3054\u5229\u7528\u304f\u3060\u3055\u3044\uff0848\u6642\u9593\u6709\u52b9\uff09\u3002",
-      "watchRoom.ytDownload": "\u300e\u6728\u4e43\u5a66\u300f\u306e\u3054\u8cfc\u5165\u3042\u308a\u304c\u3068\u3046\u3054\u3056\u3044\u307e\u3059\u3002\u3053\u306e\u30da\u30fc\u30b8\u3092\u30d6\u30c3\u30af\u30de\u30fc\u30af\u3057\u3066\u3001\u3044\u3064\u3067\u3082\u518d\u751f\u30fb4K\u4fdd\u5b58\u3092\u3054\u5229\u7528\u304f\u3060\u3055\u3044\u3002"
+      "watchRoom.ytRent": "\u300e\u6728\u4e43\u5a66\u300f\u306e\u30ec\u30f3\u30bf\u30eb\u3042\u308a\u304c\u3068\u3046\u3054\u3056\u3044\u307e\u3059\u3002\u3053\u306e\u30da\u30fc\u30b8\u3092\u30d6\u30c3\u30af\u30de\u30fc\u30af\u3057\u3066\u3054\u5229\u7528\u304f\u3060\u3055\u3044\uff0848\u6642\u9593\u6709\u52b9\uff09\u3002"
     }
   };
 
@@ -413,11 +387,6 @@
       label: "Rent Film",
       terms:
         "48-hour streaming pass in up to 4K Ultra HD. Includes both English-subtitled and original Japanese editions."
-    },
-    download: {
-      label: "Download Film",
-      terms:
-        "Digital ownership with unlimited streaming plus direct 4K Ultra HD MP4 download (23.976 fps, English-subtitled & unsubtitled masters)."
     }
   };
 
@@ -437,7 +406,6 @@
   var activeLightboxIdx = -1;
 
   var watchRoomState = "gate"; // "gate" | "yt" | "verifying" | "active" | "expired"
-  var watchRoomPlan = "";
   var watchRoomData = null;
 
   function trimStr(val) {
@@ -790,7 +758,6 @@
     var workerUrl = trimStr(cfg.WORKER_URL).replace(/\/+$/, "");
 
     var rentLink = resolveTierCheckoutLink(cfg.rent);
-    var dlLink = resolveTierCheckoutLink(cfg.download);
 
     // Hero & Watch Room Gate quick CTAs
     var heroRentEls = document.querySelectorAll("[data-hero-rent]");
@@ -798,22 +765,11 @@
       heroRentEls[r].href = !isWorkerMode && rentLink ? rentLink : "#watch";
       bindStaticCheckoutTracking(heroRentEls[r], "rent", "hero");
     }
-    var heroDlEls = document.querySelectorAll("[data-hero-download]");
-    for (var d = 0; d < heroDlEls.length; d++) {
-      heroDlEls[d].href = !isWorkerMode && dlLink ? dlLink : "#watch";
-      bindStaticCheckoutTracking(heroDlEls[d], "download", "hero");
-    }
 
     var gateRent = document.getElementById("watch-gate-rent");
     if (gateRent) {
       gateRent.href = !isWorkerMode && rentLink ? rentLink : "./#watch";
       bindStaticCheckoutTracking(gateRent, "rent", "watch_gate");
-    }
-
-    var gateDownload = document.getElementById("watch-gate-download");
-    if (gateDownload) {
-      gateDownload.href = !isWorkerMode && dlLink ? dlLink : "./#watch";
-      bindStaticCheckoutTracking(gateDownload, "download", "watch_gate");
     }
 
     var cards = document.querySelectorAll("[data-tier]");
@@ -988,7 +944,7 @@
   }
 
   /* ==========================================================================
-     SCREENING & DOWNLOAD ROOM (watch.html)
+     4K SCREENING ROOM (watch.html)
      ========================================================================== */
 
   function renderWatchRoomDynamicCopy() {
@@ -1001,16 +957,8 @@
     var hudModeEl = document.getElementById("watch-hud-mode");
 
     if (watchRoomState === "yt" && expiryEl) {
-      expiryEl.textContent =
-        watchRoomPlan === "download" || watchRoomPlan === "own"
-          ? t("watchRoom.ytDownload")
-          : t("watchRoom.ytRent");
-      if (hudModeEl) {
-        hudModeEl.textContent =
-          watchRoomPlan === "download" || watchRoomPlan === "own"
-            ? t("watchRoom.modeDownload")
-            : t("watchRoom.modeRent");
-      }
+      expiryEl.textContent = t("watchRoom.ytRent");
+      if (hudModeEl) hudModeEl.textContent = t("watchRoom.modeRent");
     } else if (watchRoomState === "verifying") {
       if (gateTitle) gateTitle.textContent = t("watchRoom.verifyingTitle");
       if (gateCopy) gateCopy.textContent = t("watchRoom.verifyingCopy");
@@ -1024,11 +972,10 @@
         expiryEl.textContent =
           t("watchRoom.rentalUntil") +
           (isNaN(dt.getTime()) ? watchRoomData.expiresAt : dt.toLocaleString(locale));
-        if (hudModeEl) hudModeEl.textContent = t("watchRoom.modeRent");
       } else {
-        expiryEl.textContent = t("watchRoom.permanent");
-        if (hudModeEl) hudModeEl.textContent = t("watchRoom.modeDownload");
+        expiryEl.textContent = t("watchRoom.ytRent");
       }
+      if (hudModeEl) hudModeEl.textContent = t("watchRoom.modeRent");
     }
   }
 
@@ -1045,29 +992,11 @@
     var gateEl = document.getElementById("watch-gate");
     var videoEl = document.getElementById("film-video");
     var controlsBar = document.getElementById("watch-controls-bar");
-    var dlEnEl = document.getElementById("watch-download-en");
-    var dlJaEl = document.getElementById("watch-download-ja");
 
-    if (dlEnEl) {
-      dlEnEl.addEventListener("click", function () {
-        trackEvent("film_download_clicked", { edition: "en_sub", lang: currentLang });
-      });
-    }
-    if (dlJaEl) {
-      dlJaEl.addEventListener("click", function () {
-        trackEvent("film_download_clicked", { edition: "ja_nosub", lang: currentLang });
-      });
-    }
-
-    // Option A — Payment Links redirect:
-    // watch.html?plan=rent|download&v=YOUTUBE_ID (and optional &dl=...&dl_ja=...)
+    // Option A — Stripe Payment Link redirect: watch.html?v=YOUTUBE_ID
     var ytId = trimStr(params.get("v"));
-    var planRaw = trimStr(params.get("plan")).toLowerCase();
-    var directDlEn = trimStr(params.get("dl"));
-    var directDlJa = trimStr(params.get("dl_ja"));
 
     if (!isWorkerMode && /^[A-Za-z0-9_-]{11}$/.test(ytId)) {
-      watchRoomPlan = planRaw === "download" || planRaw === "own" ? "download" : "rent";
       watchRoomState = "yt";
 
       var screen = document.getElementById("watch-cinema-screen");
@@ -1088,19 +1017,8 @@
       if (gateEl) gateEl.hidden = true;
       if (controlsBar) controlsBar.hidden = false;
 
-      if (watchRoomPlan === "download") {
-        if (dlEnEl && /^https?:\/\//i.test(directDlEn)) {
-          dlEnEl.href = directDlEn;
-          dlEnEl.hidden = false;
-        }
-        if (dlJaEl && /^https?:\/\//i.test(directDlJa)) {
-          dlJaEl.href = directDlJa;
-          dlJaEl.hidden = false;
-        }
-      }
-
       trackEvent("screening_room_unlocked", {
-        plan: watchRoomPlan,
+        plan: "rent",
         delivery: "links",
         lang: currentLang
       });
@@ -1147,17 +1065,8 @@
         if (gateEl) gateEl.hidden = true;
         if (controlsBar) controlsBar.hidden = false;
 
-        if (dlEnEl && trimStr(data.downloadUrl)) {
-          dlEnEl.href = trimStr(data.downloadUrl);
-          dlEnEl.hidden = false;
-        }
-        if (dlJaEl && trimStr(data.downloadUrlJa)) {
-          dlJaEl.href = trimStr(data.downloadUrlJa);
-          dlJaEl.hidden = false;
-        }
-
         trackEvent("screening_room_unlocked", {
-          plan: data.expiresAt ? "rent" : "download",
+          plan: "rent",
           delivery: "worker",
           lang: currentLang
         });

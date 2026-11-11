@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>KINOBU (木乃婦) — Food, Tradition, and Identity | A film by Chikara Motomura</title>
-  <meta name="description" content="KINOBU: Food, Tradition, and Identity (83 min, 4K) — A feature documentary by Chikara Motomura on Takuji Takahashi, third-generation chef-owner of Kyoto’s Michelin-starred Kinobu. Rent for $4.99 or download in 4K for $14.99.">
+  <meta name="description" content="KINOBU: Food, Tradition, and Identity (83 min, 4K) — A feature documentary by Chikara Motomura on Takuji Takahashi, third-generation chef-owner of Kyoto’s Michelin-starred Kinobu. Rent and stream in 4K for $4.99.">
 
   <!-- Open Graph / Social Preview -->
   <meta property="og:type" content="video.movie">
   <meta property="og:site_name" content="KINOBU">
   <meta property="og:title" content="KINOBU (木乃婦) — Food, Tradition, and Identity">
-  <meta property="og:description" content="A film by Chikara Motomura · 83 min · Kyoto, Japan · Hawaiʻi International Film Festival Official Selection. Stream ($4.99) or Download 4K Master ($14.99).">
+  <meta property="og:description" content="A film by Chikara Motomura · 83 min · Kyoto, Japan · Hawaiʻi International Film Festival Official Selection. Rent &amp; stream in 4K ($4.99).">
   <meta property="og:image" content="assets/og-card.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="675">
@@ -19,7 +19,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="KINOBU (木乃婦) — Food, Tradition, and Identity">
-  <meta name="twitter:description" content="A feature documentary by Chikara Motomura on Kyoto’s Michelin-starred Kinobu. Rent $4.99 · Download $14.99.">
+  <meta name="twitter:description" content="A feature documentary by Chikara Motomura on Kyoto’s Michelin-starred Kinobu. Rent &amp; stream in 4K ($4.99).">
   <meta name="twitter:image" content="assets/og-card.jpg">
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body id="top">
-  <a class="skip-link" href="#watch" data-i18n="skip">Skip to watch options</a>
+  <a class="skip-link" href="#watch" data-i18n="skip">Skip to rental pass</a>
 
   <!-- STICKY FROSTED-GLASS APPLE NAVIGATION BAR -->
   <nav class="site-nav" aria-label="Primary">
@@ -59,7 +59,7 @@
           <button type="button" class="lang-btn" data-set-lang="ja" aria-pressed="false" lang="ja">日本語</button>
         </div>
 
-        <a class="nav-watch-pill" href="#watch" data-i18n="nav.cta">Rent / Download</a>
+        <a class="nav-watch-pill" href="#watch" data-i18n="nav.cta">Rent Film</a>
 
         <button
           type="button"
@@ -98,8 +98,8 @@
           <a class="btn btn--hero-primary" href="#watch" data-hero-rent>
             <span data-i18n="hero.ctaRent">Rent Film — $4.99</span>
           </a>
-          <a class="btn btn--hero-secondary" href="#watch" data-hero-download>
-            <span data-i18n="hero.ctaDownload">Download 4K — $14.99</span>
+          <a class="btn btn--hero-secondary" href="#trailer">
+            <span data-i18n="hero.ctaTrailer">Watch Trailer</span>
           </a>
         </div>
       </div>
@@ -168,22 +168,22 @@
   <!-- MAIN APPLE EDITORIAL CONTENT -->
   <main class="page-main" id="main-content">
 
-    <!-- 2. WATCH — RENT ($4.99) & DOWNLOAD ($14.99) -->
+    <!-- 2. WATCH — RENT FILM ($4.99 · 48-HOUR 4K STREAMING PASS) -->
     <section class="section" id="watch" aria-labelledby="heading-watch">
       <div class="section-intro">
         <p class="section-eyebrow" data-i18n="watch.eyebrow">01 · Digital Release</p>
         <h2 class="section-title" id="heading-watch" data-i18n="watch.heading">Watch Kinobu at Home.</h2>
         <p class="section-lead" data-i18n="watch.lead">
-          Stream the complete 83-minute documentary instantly, or download the master edition to keep in your personal cinema library.
+          Stream the complete 83-minute documentary instantly in up to 4K Ultra HD, with both English-subtitled and original Japanese editions included.
         </p>
       </div>
 
-      <div class="tickets-grid">
-        <!-- Tier 1: Rent Film ($4.99) -->
-        <article class="ticket-card" data-tier="rent">
+      <div class="tickets-grid tickets-grid--single">
+        <!-- Rent Film ($4.99) -->
+        <article class="ticket-card ticket-card--featured ticket-card--single" data-tier="rent">
           <div class="ticket-body">
             <div class="ticket-badge-row">
-              <span class="ticket-pill" data-i18n="watch.rentBadge">48-Hour Rental</span>
+              <span class="ticket-pill ticket-pill--accent" data-i18n="watch.rentBadge">48-Hour Rental · 4K Ultra HD</span>
             </div>
 
             <div class="ticket-top">
@@ -205,39 +205,7 @@
 
           <div class="ticket-action">
             <div data-tier-slot>
-              <button type="button" class="btn btn--ticket is-disabled" disabled aria-disabled="true">Rent Film — $4.99</button>
-            </div>
-            <p class="ticket-status" data-tier-status data-i18n="watch.soon">Stripe checkout opens soon</p>
-          </div>
-        </article>
-
-        <!-- Tier 2: Download Film ($14.99) -->
-        <article class="ticket-card ticket-card--featured" data-tier="download">
-          <div class="ticket-body">
-            <div class="ticket-badge-row">
-              <span class="ticket-pill ticket-pill--accent" data-i18n="watch.downloadBadge">Digital Ownership · 4K Master</span>
-            </div>
-
-            <div class="ticket-top">
-              <h3 class="ticket-label" data-tier-label>Download Film</h3>
-              <span class="ticket-price" data-tier-price>$14.99</span>
-            </div>
-
-            <p class="ticket-terms" data-tier-terms>
-              Digital ownership with unlimited streaming plus direct 4K Ultra HD MP4 download (23.976 fps, English-subtitled &amp; unsubtitled masters).
-            </p>
-
-            <ul class="ticket-features">
-              <li data-i18n="watch.dlFeat1">Unlimited on-demand streaming in the Screening Room</li>
-              <li data-i18n="watch.dlFeat2">Direct DRM-free 4K MP4 download (3840×2160 · 23.976 fps)</li>
-              <li data-i18n="watch.dlFeat3">Includes both English-subtitled &amp; unsubtitled Japanese files</li>
-              <li data-i18n="watch.dlFeat4">Yours to keep permanently for offline viewing</li>
-            </ul>
-          </div>
-
-          <div class="ticket-action">
-            <div data-tier-slot>
-              <button type="button" class="btn btn--ticket-featured is-disabled" disabled aria-disabled="true">Download Film — $14.99</button>
+              <button type="button" class="btn btn--ticket-featured is-disabled" disabled aria-disabled="true">Rent Film — $4.99</button>
             </div>
             <p class="ticket-status" data-tier-status data-i18n="watch.soon">Stripe checkout opens soon</p>
           </div>
@@ -591,7 +559,7 @@
       </div>
 
       <div class="footer-links">
-        <a href="#watch" data-i18n="footer.watch">Rent / Download</a>
+        <a href="#watch" data-i18n="footer.watch">Rent Film</a>
         <a href="watch.html" data-i18n="footer.room">Screening Room</a>
         <a href="https://www.chikaramotomura.net" data-site-director target="_blank" rel="noopener">Chikara Motomura</a>
         <a href="mailto:chikaramotomura@gmail.com" data-site-email data-i18n="footer.contact">Contact</a>
