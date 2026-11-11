@@ -6,11 +6,14 @@ Official bilingual (`EN` / `日本語`) film website and post-purchase Screening
 - **Download Film (Unlimited Stream + 4K MP4 Master):** `$14.99`
 - **Languages:** English (`EN`) & Japanese (`日本語`, accessible directly via `?lang=ja`)
 
+> **Fast Setup with Claude Code (`Stripe` + `PostHog` + `Porkbun Domain`):**
+> Open this repository in Claude Code or see **[`CLAUDE.md`](./CLAUDE.md)** for the complete copy-pasteable setup playbook covering Porkbun DNS + GitHub Pages HTTPS, pre-wired PostHog funnel analytics, and Stripe (`$4.99` Rent / `$14.99` Download).
+
 ---
 
-## How to Connect Stripe Later (`config.js`)
+## How to Connect Stripe & PostHog Later (`config.js`)
 
-[`config.js`](./config.js) is the **only file you need to edit** to activate Stripe transactions. While `rent.link`, `download.link`, and `WORKER_URL` are empty (`""`), both pricing cards render cleanly in a ready state (`"Stripe checkout opens soon"`). As soon as you paste your Stripe links or Worker URL, the buttons activate automatically.
+[`config.js`](./config.js) is the **only file you need to edit** to activate Stripe transactions and PostHog analytics. While `rent.link`, `download.link`, `WORKER_URL`, and `POSTHOG_KEY` are empty (`""`), pricing cards render cleanly in a ready state (`"Stripe checkout opens soon"`) and no third-party analytics scripts load. As soon as you paste your keys/links, everything activates automatically.
 
 ### Option A — Stripe Payment Links (No Backend · 2-Minute Setup)
 
@@ -80,9 +83,10 @@ python3 -m http.server 8080
 
 | File | Purpose |
 | :--- | :--- |
-| `config.js` | Single-file Stripe connector (`$4.99` Rent & `$14.99` Download), media paths, and external URLs |
+| `CLAUDE.md` | Fast-setup playbook for Claude Code (`Porkbun DNS` + `PostHog` + `Stripe` `$4.99` / `$14.99`) |
+| `config.js` | Single-file Stripe (`$4.99` Rent & `$14.99` Download), PostHog (`POSTHOG_KEY`), and domain connector |
 | `index.html` | Main Apple Modern one-page film website |
 | `watch.html` | Post-purchase Screening & 4K Download Room (`noindex, nofollow`) |
 | `styles.css` | Apple Modern design system (frosted glass nav, dark cinema hero, bento cards, lightbox) |
-| `site.js` | Wires `window.SITE`, `EN` / `日本語` i18n, trailer edition switcher, stills lightbox, and `watch.html` |
+| `site.js` | Wires `window.SITE`, `EN` / `日本語` i18n, PostHog funnel events, trailer edition switcher, stills lightbox, and `watch.html` |
 | `assets/` | Official poster (`poster.jpg`), dual 1080p trailers (`trailer-en.mp4`, `trailer-ja.mp4`), and 6 4K stills (`assets/stills/`) |

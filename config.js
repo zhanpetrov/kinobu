@@ -1,39 +1,45 @@
 // ============================================================================
-// KINOBU (木乃婦) — Site & Stripe Connector Configuration
-// (The only file you ever need to edit to connect Stripe)
+// KINOBU (木乃婦) — Site, Stripe, PostHog & Domain Configuration
+// (The single file for Stripe checkout, PostHog analytics & domain wiring.
+//  For full automated setup with Claude Code, see CLAUDE.md in the repo root.)
 // ============================================================================
 //
-// HOW TO CONNECT STRIPE LATER:
+// 1. STRIPE CONNECTOR:
+//    • Option A — Stripe Payment Links (No backend · 2-minute setup):
+//      Paste your two `https://buy.stripe.com/...` URLs into `rent.link` ($4.99)
+//      and `download.link` ($14.99). Buttons activate automatically and append
+//      `?locale=ja` when visitors browse in Japanese (日本語).
+//    • Option B — Stripe Checkout Worker / API Connector (Tokenized 4K Paywall):
+//      Set `mode: "worker"` and paste your Worker endpoint into `WORKER_URL`.
 //
-// Option A — Stripe Payment Links (No backend required · 2-minute setup):
-//   1. In Stripe Dashboard -> Payment Links, create two links:
-//      • Rent Film ($4.99)      -> After payment redirect to:
-//        https://YOUR_DOMAIN/watch.html?plan=rent&v=YOUR_UNLISTED_VIDEO_ID
-//      • Download Film ($14.99) -> After payment redirect to:
-//        https://YOUR_DOMAIN/watch.html?plan=download&v=YOUR_UNLISTED_VIDEO_ID&dl=YOUR_SIGNED_DOWNLOAD_URL
-//   2. Paste the two `https://buy.stripe.com/...` URLs into `rent.link` and
-//      `download.link` below. Buttons activate automatically as soon as a
-//      link is non-empty, and `?locale=ja` is appended automatically when
-//      visitors view the site in Japanese (日本語).
+// 2. POSTHOG ANALYTICS CONNECTOR:
+//    • Paste your PostHog Project API Key (`phc_...`) into `POSTHOG_KEY`.
+//      Pageviews plus custom film funnel events (`trailer_played`,
+//      `checkout_clicked`, `language_switched`, `screening_room_unlocked`,
+//      `film_download_clicked`) activate automatically across all pages.
 //
-// Option B — Stripe Checkout Worker / API Connector (Tokenized Paywall):
-//   1. Deploy your Cloudflare Worker / serverless Stripe connector exposing:
-//      • POST /checkout  (body: { tier: "rent" | "download", locale: "en" | "ja" }) -> { url }
-//      • GET  /access?session_id=...  -> { streamUrl, streamUrlJa, downloadUrl, downloadUrlJa, expiresAt }
-//   2. Set `mode: "worker"` and paste your endpoint URL into `WORKER_URL` below.
+// 3. CUSTOM DOMAIN (PORKBUN + GITHUB PAGES):
+//    • Set `SITE_URL` once your Porkbun domain is live (see CLAUDE.md).
 //
-// SECURITY NOTE: Never place a secret key (`sk_live_...` / `rk_live_...`) here.
-// Only public `https://buy.stripe.com/...` links, a public `pk_live_...` key,
-// or your Worker endpoint belong in client-side configuration.
+// SECURITY NOTE: Never place secret keys (`sk_live_...`, `rk_live_...`, or
+// Porkbun `sk1_...`) in this file. Only public links, `pk_live_...`, or `phc_...`
+// project tokens belong in client-side configuration.
 // ============================================================================
 
 window.SITE = {
+  // Canonical production URL (e.g. "https://kinobufilm.com" once Porkbun DNS is live)
+  SITE_URL: "",
+
   // "links" = Stripe Payment Links | "worker" = Stripe Checkout API / Worker connector
   mode: "links",
 
   // --- STRIPE CONNECTOR SLOT (paste your Worker URL or Publishable Key later) ---
   WORKER_URL: "",
   STRIPE_PUBLISHABLE_KEY: "",
+
+  // --- POSTHOG ANALYTICS CONNECTOR SLOT (paste your phc_... Project Key) ---
+  POSTHOG_KEY: "",
+  POSTHOG_HOST: "https://us.i.posthog.com", // Use "https://eu.i.posthog.com" for PostHog EU Cloud
 
   // --- TIER 1: RENT FILM ($4.99 · 48-Hour Streaming) ---
   rent: {

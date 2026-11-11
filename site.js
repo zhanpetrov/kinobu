@@ -433,6 +433,7 @@
   var currentLang = "en";
   var currentTrailerVer = "en";
   var userPinnedTrailerVer = false;
+  var trailerPlayTracked = false;
   var activeLightboxIdx = -1;
 
   var watchRoomState = "gate"; // "gate" | "yt" | "verifying" | "active" | "expired"
@@ -441,6 +442,83 @@
 
   function trimStr(val) {
     return typeof val === "string" ? val.trim() : "";
+  }
+
+  function initPostHog() {
+    var phKey = trimStr(cfg.POSTHOG_KEY);
+    if (!phKey) return;
+    var phHost = trimStr(cfg.POSTHOG_HOST) || "https://us.i.posthog.com";
+
+    /* Official PostHog async web loader (array.js) */
+    !(function (t, e) {
+      var o, n, p, r;
+      e.__SV ||
+        ((window.posthog = e),
+        (e._i = []),
+        (e.init = function (i, s, a) {
+          function g(t, e) {
+            var o = e.split(".");
+            2 == o.length && ((t = t[o[0]]), (e = o[1])),
+              (t[e] = function () {
+                t.push([e].concat(Array.prototype.slice.call(arguments, 0)));
+              });
+          }
+          ((p = t.createElement("script")).type = "text/javascript"),
+            (p.crossOrigin = "anonymous"),
+            (p.async = !0),
+            (p.src =
+              s.api_host.replace(".i.posthog.com", "-assets.i.posthog.com") +
+              "/static/array.js"),
+            (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(p, r);
+          var u = e;
+          for (
+            void 0 !== a ? (u = e[a] = []) : (a = "posthog"),
+              u.people = u.people || [],
+              Object.defineProperty(u, "toString", {
+                configurable: !0,
+                enumerable: !0,
+                writable: !0,
+                value: function (t) {
+                  var e = "posthog";
+                  return "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e;
+                }
+              }),
+              Object.defineProperty(u.people, "toString", {
+                configurable: !0,
+                enumerable: !0,
+                writable: !0,
+                value: function () {
+                  return u.toString(1) + ".people (stub)";
+                }
+              }),
+              o =
+                "init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(
+                  " "
+                ),
+              n = 0;
+            n < o.length;
+            n++
+          )
+            g(u, o[n]);
+          e._i.push([i, s, a]);
+        }),
+        (e.__SV = 1));
+    })(document, window.posthog || []);
+
+    window.posthog.init(phKey, {
+      api_host: phHost,
+      person_profiles: "identified_only",
+      capture_pageview: true,
+      capture_pageleave: true
+    });
+  }
+
+  function trackEvent(eventName, props) {
+    try {
+      if (window.posthog && typeof window.posthog.capture === "function") {
+        window.posthog.capture(eventName, props || {});
+      }
+    } catch (e) {}
   }
 
   function t(key) {
@@ -494,6 +572,10 @@
     var targetVer = ver === "ja" ? "ja" : "en";
     if (manualPin) {
       userPinnedTrailerVer = true;
+      trackEvent("trailer_subtitle_switched", {
+        edition: targetVer === "ja" ? "ja_nosub" : "en_sub",
+        lang: currentLang
+      });
     }
     currentTrailerVer = targetVer;
 
@@ -578,6 +660,13 @@
         trailerVideo.addEventListener("play", function () {
           trailerVideo.controls = true;
           trailerPlayBtn.hidden = true;
+          if (!trailerPlayTracked) {
+            trailerPlayTracked = true;
+            trackEvent("trailer_played", {
+              edition: currentTrailerVer === "ja" ? "ja_nosub" : "en_sub",
+              lang: currentLang
+            });
+          }
         });
       }
 
@@ -678,6 +767,24 @@
     };
   }
 
+  function bindStaticCheckoutTracking(el, tierKey, locationName) {
+    if (!el || el.getAttribute("data-ph-bound") === "1") return;
+    el.setAttribute("data-ph-bound", "1");
+    el.addEventListener("click", function () {
+      var href = el.getAttribute("href") || "";
+      if (href.indexOf("stripe.com") !== -1) {
+        var tCfg = cfg[tierKey] || {};
+        trackEvent("checkout_clicked", {
+          tier: tierKey,
+          price: trimStr(tCfg.price),
+          mode: "links",
+          location: locationName,
+          lang: currentLang
+        });
+      }
+    });
+  }
+
   function wireTickets() {
     var isWorkerMode = trimStr(cfg.mode).toLowerCase() === "worker";
     var workerUrl = trimStr(cfg.WORKER_URL).replace(/\/+$/, "");
@@ -689,17 +796,25 @@
     var heroRentEls = document.querySelectorAll("[data-hero-rent]");
     for (var r = 0; r < heroRentEls.length; r++) {
       heroRentEls[r].href = !isWorkerMode && rentLink ? rentLink : "#watch";
+      bindStaticCheckoutTracking(heroRentEls[r], "rent", "hero");
     }
     var heroDlEls = document.querySelectorAll("[data-hero-download]");
     for (var d = 0; d < heroDlEls.length; d++) {
       heroDlEls[d].href = !isWorkerMode && dlLink ? dlLink : "#watch";
+      bindStaticCheckoutTracking(heroDlEls[d], "download", "hero");
     }
 
     var gateRent = document.getElementById("watch-gate-rent");
-    if (gateRent) gateRent.href = !isWorkerMode && rentLink ? rentLink : "./#watch";
+    if (gateRent) {
+      gateRent.href = !isWorkerMode && rentLink ? rentLink : "./#watch";
+      bindStaticCheckoutTracking(gateRent, "rent", "watch_gate");
+    }
 
     var gateDownload = document.getElementById("watch-gate-download");
-    if (gateDownload) gateDownload.href = !isWorkerMode && dlLink ? dlLink : "./#watch";
+    if (gateDownload) {
+      gateDownload.href = !isWorkerMode && dlLink ? dlLink : "./#watch";
+      bindStaticCheckoutTracking(gateDownload, "download", "watch_gate");
+    }
 
     var cards = document.querySelectorAll("[data-tier]");
     if (!cards.length) return;
@@ -743,6 +858,17 @@
         linkEl.href = directLink;
         linkEl.rel = "noopener";
         linkEl.textContent = ctaLabel;
+        (function (tKey, tPrice) {
+          linkEl.addEventListener("click", function () {
+            trackEvent("checkout_clicked", {
+              tier: tKey,
+              price: tPrice,
+              mode: "links",
+              location: "card",
+              lang: currentLang
+            });
+          });
+        })(tierKey, price);
         slotEl.appendChild(linkEl);
         if (statusEl) statusEl.hidden = true;
       } else if (isWorkerMode && workerUrl) {
@@ -750,11 +876,18 @@
         activeBtn.type = "button";
         activeBtn.className = btnVariant;
         activeBtn.textContent = ctaLabel;
-        (function (tKey, bEl, sEl, cLabel) {
+        (function (tKey, tPrice, bEl, sEl, cLabel) {
           bEl.addEventListener("click", function () {
+            trackEvent("checkout_clicked", {
+              tier: tKey,
+              price: tPrice,
+              mode: "worker",
+              location: "card",
+              lang: currentLang
+            });
             startWorkerCheckout(workerUrl, tKey, bEl, sEl, cLabel);
           });
-        })(tierKey, activeBtn, statusEl, ctaLabel);
+        })(tierKey, price, activeBtn, statusEl, ctaLabel);
         slotEl.appendChild(activeBtn);
         if (statusEl) statusEl.hidden = true;
       } else {
@@ -806,6 +939,11 @@
       syncLightboxCaption();
       modal.hidden = false;
       document.body.style.overflow = "hidden";
+      trackEvent("still_opened", {
+        index: activeLightboxIdx + 1,
+        src: STILLS_ITEMS[activeLightboxIdx].src,
+        lang: currentLang
+      });
       if (closeBtn) closeBtn.focus();
     }
 
@@ -910,6 +1048,17 @@
     var dlEnEl = document.getElementById("watch-download-en");
     var dlJaEl = document.getElementById("watch-download-ja");
 
+    if (dlEnEl) {
+      dlEnEl.addEventListener("click", function () {
+        trackEvent("film_download_clicked", { edition: "en_sub", lang: currentLang });
+      });
+    }
+    if (dlJaEl) {
+      dlJaEl.addEventListener("click", function () {
+        trackEvent("film_download_clicked", { edition: "ja_nosub", lang: currentLang });
+      });
+    }
+
     // Option A — Payment Links redirect:
     // watch.html?plan=rent|download&v=YOUTUBE_ID (and optional &dl=...&dl_ja=...)
     var ytId = trimStr(params.get("v"));
@@ -950,6 +1099,11 @@
         }
       }
 
+      trackEvent("screening_room_unlocked", {
+        plan: watchRoomPlan,
+        delivery: "links",
+        lang: currentLang
+      });
       renderWatchRoomDynamicCopy();
       return;
     }
@@ -1002,6 +1156,11 @@
           dlJaEl.hidden = false;
         }
 
+        trackEvent("screening_room_unlocked", {
+          plan: data.expiresAt ? "rent" : "download",
+          delivery: "worker",
+          lang: currentLang
+        });
         renderWatchRoomDynamicCopy();
       })
       .catch(function () {
@@ -1090,7 +1249,10 @@
     for (var i = 0; i < langBtns.length; i++) {
       langBtns[i].addEventListener("click", function (ev) {
         var targetLang = ev.currentTarget.getAttribute("data-set-lang");
-        applyLanguage(targetLang, true);
+        if (targetLang !== currentLang) {
+          applyLanguage(targetLang, true);
+          trackEvent("language_switched", { lang: currentLang });
+        }
       });
     }
 
@@ -1126,6 +1288,7 @@
     });
   }
 
+  initPostHog();
   wireGlobalLinksAndTrailer();
   wireMenuAndLanguageControls();
   wireStillsLightbox();
