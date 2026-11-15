@@ -175,6 +175,7 @@
       "footer.contact": "Contact",
 
       "watchRoom.skip": "Skip to player",
+      "watchRoom.subGroupAria": "Film subtitle edition",
       "watchRoom.backAria": "Return to KINOBU main page",
       "watchRoom.options": "Rent Film",
       "watchRoom.vfAria": "KINOBU full film player",
@@ -360,6 +361,7 @@
       "footer.contact": "\u304a\u554f\u3044\u5408\u308f\u305b",
 
       "watchRoom.skip": "\u30d7\u30ec\u30fc\u30e4\u30fc\u3078\u30b9\u30ad\u30c3\u30d7",
+      "watchRoom.subGroupAria": "\u672c\u7de8\u306e\u5b57\u5e55\u5207\u308a\u66ff\u3048",
       "watchRoom.backAria": "\u300e\u6728\u4e43\u5a66\u300f\u30c8\u30c3\u30d7\u30da\u30fc\u30b8\u3078\u623b\u308b",
       "watchRoom.options": "\u30ec\u30f3\u30bf\u30eb\u8996\u8074",
       "watchRoom.vfAria": "\u300e\u6728\u4e43\u5a66\u300f\u672c\u7de8\u30d7\u30ec\u30fc\u30e4\u30fc",
@@ -993,25 +995,65 @@
     var videoEl = document.getElementById("film-video");
     var controlsBar = document.getElementById("watch-controls-bar");
 
-    // Option A — Stripe Payment Link redirect: watch.html?v=YOUTUBE_ID
+    // Option A — Stripe Payment Link redirect:
+    //   watch.html?v=EN_SUBTITLED_YOUTUBE_ID&vja=ORIGINAL_NO_SUB_YOUTUBE_ID
+    // (`vja` is optional; when present, an edition switcher is shown.)
+    var ytPattern = /^[A-Za-z0-9_-]{11}$/;
     var ytId = trimStr(params.get("v"));
+    var ytIdJa = trimStr(params.get("vja"));
+    if (!ytPattern.test(ytIdJa)) ytIdJa = "";
 
-    if (!isWorkerMode && /^[A-Za-z0-9_-]{11}$/.test(ytId)) {
+    if (!isWorkerMode && ytPattern.test(ytId)) {
       watchRoomState = "yt";
 
-      var screen = document.getElementById("watch-cinema-screen");
-      if (screen) {
-        var frame = document.createElement("iframe");
-        frame.src =
+      var ytEditions = { en: ytId, ja: ytIdJa || ytId };
+      var ytEmbedSrc = function (id) {
+        return (
           "https://www.youtube-nocookie.com/embed/" +
-          ytId +
-          "?rel=0&modestbranding=1&playsinline=1";
+          id +
+          "?rel=0&modestbranding=1&playsinline=1"
+        );
+      };
+      // Japanese visitors start on the original (no-subtitle) edition when available.
+      var startEdition = ytIdJa && currentLang === "ja" ? "ja" : "en";
+
+      var screen = document.getElementById("watch-cinema-screen");
+      var frame = null;
+      if (screen) {
+        frame = document.createElement("iframe");
+        frame.src = ytEmbedSrc(ytEditions[startEdition]);
         frame.title = "KINOBU — Full Film";
         frame.allow =
           "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen";
         frame.allowFullscreen = true;
         frame.referrerPolicy = "strict-origin-when-cross-origin";
         screen.insertBefore(frame, screen.firstChild);
+      }
+
+      var editionToggle = document.getElementById("film-edition-toggle");
+      if (editionToggle && ytIdJa && frame) {
+        var editionBtns = editionToggle.querySelectorAll("[data-film-ver]");
+        var setEdition = function (ver) {
+          for (var b = 0; b < editionBtns.length; b++) {
+            var on = editionBtns[b].getAttribute("data-film-ver") === ver;
+            editionBtns[b].classList.toggle("is-active", on);
+            editionBtns[b].setAttribute("aria-pressed", on ? "true" : "false");
+          }
+        };
+        setEdition(startEdition);
+        for (var e = 0; e < editionBtns.length; e++) {
+          editionBtns[e].addEventListener("click", function () {
+            var ver = this.getAttribute("data-film-ver");
+            if (this.classList.contains("is-active")) return;
+            frame.src = ytEmbedSrc(ytEditions[ver]);
+            setEdition(ver);
+            trackEvent("film_edition_switched", {
+              edition: ver === "ja" ? "ja_nosub" : "en_sub",
+              lang: currentLang
+            });
+          });
+        }
+        editionToggle.hidden = false;
       }
 
       if (gateEl) gateEl.hidden = true;

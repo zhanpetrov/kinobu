@@ -49,7 +49,7 @@ window.SITE = {
     priceJa: "$4.99",
     terms: "48-hour streaming pass in up to 4K Ultra HD. Includes both English-subtitled and original Japanese editions.",
     termsJa: "48\u6642\u9593\u306e4K Ultra HD\u30b9\u30c8\u30ea\u30fc\u30df\u30f3\u30b0\u8996\u8074\u30d1\u30b9\u3002\u82f1\u8a9e\u5b57\u5e55\u7248\u30fb\u65e5\u672c\u8a9e\u30aa\u30ea\u30b8\u30ca\u30eb\u7248\uff08\u5b57\u5e55\u306a\u3057\uff09\u306e\u4e21\u65b9\u3092\u3054\u89a7\u3044\u305f\u3060\u3051\u307e\u3059\u3002",
-    link: "",     // <-- PASTE STRIPE RENT PAYMENT LINK HERE (e.g. "https://buy.stripe.com/...")
+    link: "https://buy.stripe.com/aFaaEXdv7fDX15ibjt0sU00", // Live $4.99 Payment Link -> watch.html?v=EN_SUB&vja=NO_SUB
     linkJa: ""    // <-- Optional dedicated Japanese Stripe Payment Link
   },
 
