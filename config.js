@@ -28,7 +28,7 @@
 
 window.SITE = {
   // Canonical production URL (e.g. "https://kinobufilm.com" once Porkbun DNS is live)
-  SITE_URL: "",
+  SITE_URL: "https://kinobumovie.com",
 
   // "links" = Stripe Payment Links | "worker" = Stripe Checkout API / Worker connector
   mode: "links",
@@ -38,7 +38,7 @@ window.SITE = {
   STRIPE_PUBLISHABLE_KEY: "",
 
   // --- POSTHOG ANALYTICS CONNECTOR SLOT (paste your phc_... Project Key) ---
-  POSTHOG_KEY: "",
+  POSTHOG_KEY: "phc_pfnYsC3BK2p3SozyoGdexFcRZP4yUHFN9pGcZXrpkbwi",
   POSTHOG_HOST: "https://us.i.posthog.com", // Use "https://eu.i.posthog.com" for PostHog EU Cloud
 
   // --- RENT FILM ($4.99 · 48-Hour 4K Streaming Pass) ---
