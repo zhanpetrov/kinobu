@@ -59,6 +59,9 @@ window.SITE = {
   trailerSrcJa: "assets/trailer-ja.mp4",
   trailerPoster: "assets/trailer-poster.jpg",
   trailerEmbed: "",
+  // Vimeo trailers (take priority over the MP4 files above when set)
+  trailerVimeoEn: "https://vimeo.com/1247672810/416ff18093",
+  trailerVimeoJa: "https://vimeo.com/1247672814/572bd5c397",
 
   directorSiteUrl: "https://www.chikaramotomura.net",
   restaurantSiteUrl: "https://www.kinobu.co.jp/en",

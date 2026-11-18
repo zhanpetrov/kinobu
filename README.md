@@ -19,7 +19,8 @@ Official bilingual (`EN` / `日本語`) film website and post-purchase 4K Screen
 1. Open [Stripe Dashboard → Payment Links](https://dashboard.stripe.com/payment-links) and create one link:
    - **Rent Film (`$4.99`)** — Set the after-payment redirect URL to:
      `https://YOUR_DOMAIN/watch.html?v=YOUR_UNLISTED_VIDEO_ID`
-   - Optional: add `&vja=SECOND_VIDEO_ID` (the unsubtitled original) to show an **EN Subtitles / Original · No Sub** switcher in the Screening Room. Live setup: `watch.html?v=yUGCYBCTVoc&vja=RMEfVU-Awgk`.
+   - **Vimeo (current live setup):** `watch.html?vm=EN_ID:EN_HASH&vmja=JA_ID:JA_HASH` — the IDs/hashes come from the Vimeo private links (`vimeo.com/ID/HASH`). `vmja` (the unsubtitled original) is optional; when present, an **EN Subtitles / Original · No Sub** switcher appears. YouTube links (`?v=…&vja=…`) still work for older purchases.
+   - Trailers on the homepage use `trailerVimeoEn` / `trailerVimeoJa` in `config.js` (falls back to the MP4 files when empty).
 2. Paste your `https://buy.stripe.com/...` URL into [`config.js`](./config.js):
 
 ```js

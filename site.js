@@ -237,7 +237,7 @@
         "83\u5206\u306e\u672c\u7de8\u3092\u6700\u9ad84K Ultra HD\u753b\u8cea\u3067\u5373\u6642\u30b9\u30c8\u30ea\u30fc\u30df\u30f3\u30b0\u518d\u751f\u3002\u82f1\u8a9e\u5b57\u5e55\u7248\u30fb\u65e5\u672c\u8a9e\u30aa\u30ea\u30b8\u30ca\u30eb\u7248\uff08\u5b57\u5e55\u306a\u3057\uff09\u306e\u4e21\u65b9\u3092\u304a\u697d\u3057\u307f\u3044\u305f\u3060\u3051\u307e\u3059\u3002",
       "watch.rentBadge": "48\u6642\u9593\u30ec\u30f3\u30bf\u30eb \u00b7 4K Ultra HD",
       "watch.rentFeat1": "83\u5206\u306e\u672c\u7de8\u3092\u6700\u9ad84K Ultra HD\u753b\u8cea\u3067\u5373\u6642\u30b9\u30c8\u30ea\u30fc\u30df\u30f3\u30b0",
-      "watch.rentFeat2": "\u3054\u8cfc\u5165\u6642\u70b9\u304b\u308948\u6642\u9593\u3044\u3064\u3067\u3082\u8996\u8074\u53ef\u80fd",
+      "watch.rentFeat2": "\u30ec\u30f3\u30bf\u30eb\u958b\u59cb\u304b\u308948\u6642\u9593\u3001\u3044\u3064\u3067\u3082\u8996\u8074\u3067\u304d\u307e\u3059",
       "watch.rentFeat3": "\u65e5\u672c\u8a9e\u30aa\u30ea\u30b8\u30ca\u30eb\u7248\uff08\u5b57\u5e55\u306a\u3057\uff09\u3068\u82f1\u8a9e\u5b57\u5e55\u7248\u306e\u4e21\u65b9\u306b\u5bfe\u5fdc",
       "watch.rentFeat4": "Mac\u30fbPC\u30fbiPhone\u30fbiPad\u30fbAirPlay\u3067\u9451\u8cde\u53ef\u80fd",
       "watch.soon": "Stripe\u6c7a\u6e08\u53d7\u4ed8\u306f\u307e\u3082\u306a\u304f\u958b\u59cb\u3057\u307e\u3059",
@@ -253,11 +253,11 @@
       "film.eyebrow": "02 \u00b7 \u4f5c\u54c1\u7d39\u4ecb",
       "film.heading": "\u4eac\u90fd\u306e\u9759\u5bc2\u3068\u3001\u53a8\u623f\u306e\u71b1\u91cf\u3002",
       "film.epigraph":
-        "\u300c\u5fd9\u3057\u3044\u4eac\u90fd\u306e\u4e2d\u5fc3\u8857\u306b\u5c45\u3057\u306a\u304c\u3089\u3001\u6696\u7c3e\u3092\u304f\u3050\u308b\u3068\u5fc3\u4f11\u307e\u308b\u3086\u3068\u308a\u306e\u7a7a\u9593\u3002<br>\u7d30\u9577\u3044\u901a\u8def\u3092\u629c\u3051\u3001\u9774\u3092\u8131\u3044\u3067\u5ead\u4ed8\u304d\u306e\u500b\u5ba4\u3078\u3002\u300d",
+        "\u300c\u306b\u304e\u3084\u304b\u306a\u4eac\u90fd\u306e\u4e2d\u5fc3\u8857\u306b\u3042\u308a\u306a\u304c\u3089\u3001\u6696\u7c3e\u3092\u304f\u3050\u308b\u3068\u5fc3\u4f11\u307e\u308b\u3086\u3068\u308a\u306e\u7a7a\u9593\u3002<br>\u7d30\u9577\u3044\u901a\u8def\u3092\u629c\u3051\u3001\u9774\u3092\u8131\u3044\u3067\u5ead\u4ed8\u304d\u306e\u500b\u5ba4\u3078\u3002\u300d",
       "film.logline":
         "\u300e\u6728\u4e43\u5a66 \u2014 \u98df\u3001\u4f1d\u7d71\u3001\u30a2\u30a4\u30c7\u30f3\u30c6\u30a3\u30c6\u30a3\u300f\u306f\u3001\u4eac\u90fd\u306e\u30df\u30b7\u30e5\u30e9\u30f3\u661f\u4ed8\u304d\u6599\u4ead\u300c\u6728\u4e43\u5a66\u300d\u306e\u821e\u53f0\u88cf\u306b\u5bc6\u7740\u3002\u4e09\u4ee3\u76ee\u4e3b\u4eba\u30fb\u9ad8\u6a4b\u62d3\u5150\u304c\u3001\u9759\u5bc2\u3068\u7dca\u5f35\u304c\u4ea4\u932f\u3059\u308b\u53a8\u623f\u3067\u7e4a\u7d30\u304b\u3064\u72ec\u5275\u7684\u306a\u4eac\u6599\u7406\u3092\u751f\u307f\u51fa\u3059\u59ff\u3092\u8ffd\u3046\u3002",
       "film.p1":
-        "\u672c\u4f5c\u54c1\u306e\u4e3b\u4eba\u516c\u306f\u3001\u4eac\u6599\u7406\u306e\u8001\u8217\u30fb\u6728\u4e43\u5a66\u306e\u4e09\u4ee3\u76ee\u30aa\u30fc\u30ca\u30fc\u30b7\u30a7\u30d5\u3001\u9ad8\u6a4b\u62d3\u5150\u6c0f\u3002\u6570\u767e\u5e74\u3092\u8a87\u308b\u4eac\u6599\u7406\u306e\u4f1d\u7d71\u3092\u6df1\u304f\u5c0a\u3073\u306a\u304c\u3089\u3082\u3001\u6599\u7406\u3092\u3055\u3089\u306b\u9ad8\u3081\u308b\u305f\u3081\u5e38\u306b\u65b0\u3057\u3044\u53ef\u80fd\u6027\u3092\u8ffd\u6c42\u3057\u7d9a\u3051\u3066\u3044\u308b\u300220\u5e74\u4ee5\u4e0a\u306b\u308f\u305f\u308b\u80fd\u697d\u306e\u4fee\u7df4\u304b\u3089\u57f9\u3063\u305f\u300c\u9759\u5bc2\u3068\u8208\u596e\u3092\u540c\u5c45\u3055\u305b\u305f\u7cbe\u795e\u72b6\u614b\u300d\u306b\u3088\u308a\u3001\u30cf\u30a4\u30d7\u30ec\u30c3\u30b7\u30e3\u30fc\u306e\u53a8\u623f\u3092\u6307\u63ee\u3057\u306a\u304c\u3089\u3001\u7e4a\u7d30\u3067\u5275\u9020\u6027\u3042\u3075\u308c\u308b\u4e00\u76bf\u3092\u4ed5\u7acb\u3066\u3066\u3044\u304f\u3002",
+        "\u672c\u4f5c\u54c1\u306e\u4e3b\u4eba\u516c\u306f\u3001\u4eac\u6599\u7406\u306e\u8001\u8217\u30fb\u6728\u4e43\u5a66\u306e\u4e09\u4ee3\u76ee\u30aa\u30fc\u30ca\u30fc\u30b7\u30a7\u30d5\u3001\u9ad8\u6a4b\u62d3\u5150\u6c0f\u3002\u6570\u767e\u5e74\u306e\u6b74\u53f2\u3092\u8a87\u308b\u4eac\u6599\u7406\u306e\u4f1d\u7d71\u3092\u6df1\u304f\u5c0a\u3073\u306a\u304c\u3089\u3082\u3001\u6599\u7406\u3092\u3055\u3089\u306b\u9ad8\u3081\u308b\u305f\u3081\u5e38\u306b\u65b0\u3057\u3044\u53ef\u80fd\u6027\u3092\u8ffd\u6c42\u3057\u7d9a\u3051\u3066\u3044\u308b\u300220\u5e74\u4ee5\u4e0a\u306b\u308f\u305f\u308b\u80fd\u697d\u306e\u4fee\u7df4\u304b\u3089\u57f9\u3063\u305f\u300c\u9759\u5bc2\u3068\u8208\u596e\u3092\u540c\u5c45\u3055\u305b\u305f\u7cbe\u795e\u72b6\u614b\u300d\u306b\u3088\u308a\u3001\u30cf\u30a4\u30d7\u30ec\u30c3\u30b7\u30e3\u30fc\u306e\u53a8\u623f\u3092\u6307\u63ee\u3057\u306a\u304c\u3089\u3001\u7e4a\u7d30\u3067\u5275\u9020\u6027\u3042\u3075\u308c\u308b\u4e00\u76bf\u3092\u4ed5\u7acb\u3066\u3066\u3044\u304f\u3002",
       "film.p2":
         "\u3055\u3089\u306b\u30bd\u30e0\u30ea\u30a8\u306e\u8cc7\u683c\u3092\u6301\u3064\u9ad8\u6a4b\u6c0f\u306f\u3001\u65e5\u672c\u306e\u30ef\u30a4\u30f3\u30e1\u30fc\u30ab\u30fc\u3068\u5171\u540c\u3067\u3001\u51fa\u6c41\u3084\u65e5\u672c\u98df\u306b\u5bc4\u308a\u6dfb\u3046\u30ef\u30a4\u30f3\u3092\u958b\u767a\u3002\u672c\u4f5c\u306f\u89b3\u308b\u4eba\u3092\u6728\u4e43\u5a66\u306e\u7a7a\u9593\u3078\u3068\u6eb6\u3051\u8fbc\u307e\u305b\u3001\u4eac\u6599\u7406\u306e\u82b8\u8853\u6027\u3001\u8077\u4eba\u6280\u3001\u80fd\u697d\u3084\u7947\u5712\u796d\u3068\u7d50\u3070\u308c\u305f\u5730\u57df\u6587\u5316\u3001\u305d\u3057\u3066\u56db\u5b63\u306e\u8272\u5f69\u3068\u5668\u306b\u5bbf\u308b\u65e5\u672c\u4eba\u306e\u7f8e\u7684\u611f\u899a\u3092\u6d6e\u304b\u3073\u4e0a\u304c\u3089\u305b\u308b\u3002",
       "film.pillar1Title": "\u98df \u00b7 Food",
@@ -380,7 +380,7 @@
       "watchRoom.expiredCopy":
         "\u8996\u8074\u30d1\u30b9\u3092\u78ba\u8a8d\u3067\u304d\u306a\u3044\u304b\u300148\u6642\u9593\u306e\u30ec\u30f3\u30bf\u30eb\u671f\u9593\u304c\u7d42\u4e86\u3057\u3066\u3044\u307e\u3059\u3002\u30c8\u30c3\u30d7\u30da\u30fc\u30b8\u3078\u623b\u308b\u304b\u3001\u30b5\u30dd\u30fc\u30c8\u307e\u3067\u304a\u554f\u3044\u5408\u308f\u305b\u304f\u3060\u3055\u3044\u3002",
       "watchRoom.rentalUntil": "48\u6642\u9593\u30ec\u30f3\u30bf\u30eb\u6709\u52b9 \u00b7 \u8996\u8074\u671f\u9650\uff1a",
-      "watchRoom.ytRent": "\u300e\u6728\u4e43\u5a66\u300f\u306e\u30ec\u30f3\u30bf\u30eb\u3042\u308a\u304c\u3068\u3046\u3054\u3056\u3044\u307e\u3059\u3002\u3053\u306e\u30da\u30fc\u30b8\u3092\u30d6\u30c3\u30af\u30de\u30fc\u30af\u3057\u3066\u3054\u5229\u7528\u304f\u3060\u3055\u3044\uff0848\u6642\u9593\u6709\u52b9\uff09\u3002"
+      "watchRoom.ytRent": "\u300e\u6728\u4e43\u5a66\u300f\u3092\u30ec\u30f3\u30bf\u30eb\u3044\u305f\u3060\u304d\u3001\u3042\u308a\u304c\u3068\u3046\u3054\u3056\u3044\u307e\u3059\u3002\u3053\u306e\u30da\u30fc\u30b8\u3092\u30d6\u30c3\u30af\u30de\u30fc\u30af\u3057\u3066\u3054\u5229\u7528\u304f\u3060\u3055\u3044\uff0848\u6642\u9593\u6709\u52b9\uff09\u3002"
     }
   };
 
@@ -538,6 +538,41 @@
     return localizeCheckoutUrl(raw, currentLang);
   }
 
+  // Accepts "https://vimeo.com/ID/HASH?…", "ID/HASH", "ID:HASH" or "ID".
+  function parseVimeoRef(ref) {
+    var m = /(?:^|vimeo\.com\/(?:video\/)?)(\d{6,12})(?:[\/:]([0-9a-fA-F]{6,20}))?/.exec(trimStr(ref));
+    return m ? { id: m[1], hash: m[2] || "" } : null;
+  }
+
+  function vimeoEmbedUrl(ref, autoplay) {
+    var v = parseVimeoRef(ref);
+    if (!v) return "";
+    return (
+      "https://player.vimeo.com/video/" +
+      v.id +
+      "?" +
+      (v.hash ? "h=" + v.hash + "&" : "") +
+      "dnt=1&title=0&byline=0&portrait=0" +
+      (autoplay ? "&autoplay=1" : "")
+    );
+  }
+
+  function makePlayerFrame(src, title) {
+    var frame = document.createElement("iframe");
+    frame.src = src;
+    frame.title = title;
+    frame.allow = "autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media";
+    frame.allowFullscreen = true;
+    frame.referrerPolicy = "strict-origin-when-cross-origin";
+    return frame;
+  }
+
+  function trailerVimeoSrc(ver, autoplay) {
+    var en = trimStr(cfg.trailerVimeoEn);
+    var ja = trimStr(cfg.trailerVimeoJa) || en;
+    return vimeoEmbedUrl(ver === "ja" ? ja : en, autoplay);
+  }
+
   function setTrailerVersion(ver, manualPin) {
     var targetVer = ver === "ja" ? "ja" : "en";
     if (manualPin) {
@@ -554,6 +589,16 @@
       var active = subBtns[i].getAttribute("data-trailer-ver") === targetVer;
       subBtns[i].classList.toggle("is-active", active);
       subBtns[i].setAttribute("aria-pressed", active ? "true" : "false");
+    }
+
+    // Vimeo trailers: swap the player only once it has been started.
+    if (trimStr(cfg.trailerVimeoEn)) {
+      var vimeoFrame = document.getElementById("trailer-vimeo");
+      if (vimeoFrame) {
+        var nextSrc = trailerVimeoSrc(targetVer, true);
+        if (vimeoFrame.getAttribute("src") !== nextSrc) vimeoFrame.setAttribute("src", nextSrc);
+      }
+      return;
     }
 
     var trailerVideo = document.getElementById("trailer-video");
@@ -610,6 +655,41 @@
       trailerScreen.appendChild(iframe);
       var subToggleWrap = document.querySelector(".sub-toggle");
       if (subToggleWrap) subToggleWrap.hidden = true;
+    } else if (trailerScreen && trailerVideo && trimStr(cfg.trailerVimeoEn)) {
+      // Vimeo trailers: keep the poster + play pill, load the player on click.
+      trailerVideo.removeAttribute("src");
+      trailerVideo.setAttribute("preload", "none");
+      trailerVideo.controls = false;
+      var vimeoPoster = trimStr(cfg.trailerPoster);
+      if (vimeoPoster) trailerVideo.setAttribute("poster", vimeoPoster);
+
+      var startVimeoTrailer = function () {
+        if (document.getElementById("trailer-vimeo")) return;
+        var vFrame = makePlayerFrame(
+          trailerVimeoSrc(currentTrailerVer, true),
+          "KINOBU — Official Trailer"
+        );
+        vFrame.id = "trailer-vimeo";
+        trailerScreen.appendChild(vFrame);
+        trailerVideo.hidden = true;
+        if (trailerPlayBtn) trailerPlayBtn.hidden = true;
+        if (!trailerPlayTracked) {
+          trailerPlayTracked = true;
+          trackEvent("trailer_played", {
+            edition: currentTrailerVer === "ja" ? "ja_nosub" : "en_sub",
+            lang: currentLang
+          });
+        }
+      };
+      if (trailerPlayBtn) trailerPlayBtn.addEventListener("click", startVimeoTrailer);
+      trailerVideo.addEventListener("click", startVimeoTrailer);
+
+      var vimeoSubBtns = document.querySelectorAll("[data-trailer-ver]");
+      for (var vs = 0; vs < vimeoSubBtns.length; vs++) {
+        vimeoSubBtns[vs].addEventListener("click", function (ev) {
+          setTrailerVersion(ev.currentTarget.getAttribute("data-trailer-ver"), true);
+        });
+      }
     } else if (trailerVideo) {
       var trailerPoster = trimStr(cfg.trailerPoster);
       if (trailerPoster && trailerVideo.getAttribute("poster") !== trailerPoster) {
@@ -995,43 +1075,49 @@
     var videoEl = document.getElementById("film-video");
     var controlsBar = document.getElementById("watch-controls-bar");
 
-    // Option A — Stripe Payment Link redirect:
-    //   watch.html?v=EN_SUBTITLED_YOUTUBE_ID&vja=ORIGINAL_NO_SUB_YOUTUBE_ID
-    // (`vja` is optional; when present, an edition switcher is shown.)
+    // Option A — Stripe Payment Link redirect. The full-film video IDs live only
+    // in the Payment Link's redirect URL (never in this public repo):
+    //   Vimeo:   watch.html?vm=EN_ID:EN_HASH&vmja=JA_ID:JA_HASH
+    //   YouTube: watch.html?v=EN_YOUTUBE_ID&vja=JA_YOUTUBE_ID   (legacy links)
+    // The second edition is optional; when present, an edition switcher is shown.
     var ytPattern = /^[A-Za-z0-9_-]{11}$/;
-    var ytId = trimStr(params.get("v"));
-    var ytIdJa = trimStr(params.get("vja"));
-    if (!ytPattern.test(ytIdJa)) ytIdJa = "";
+    var filmEditions = null;
+    var vmEn = parseVimeoRef(params.get("vm"));
+    var vmJa = parseVimeoRef(params.get("vmja"));
 
-    if (!isWorkerMode && ytPattern.test(ytId)) {
+    if (vmEn) {
+      filmEditions = {
+        en: vimeoEmbedUrl(vmEn.id + ":" + vmEn.hash, false),
+        ja: vmJa ? vimeoEmbedUrl(vmJa.id + ":" + vmJa.hash, false) : ""
+      };
+    } else if (ytPattern.test(trimStr(params.get("v")))) {
+      var ytEmbedSrc = function (id) {
+        return "https://www.youtube-nocookie.com/embed/" + id + "?rel=0&modestbranding=1&playsinline=1";
+      };
+      var ytJa = trimStr(params.get("vja"));
+      filmEditions = {
+        en: ytEmbedSrc(trimStr(params.get("v"))),
+        ja: ytPattern.test(ytJa) ? ytEmbedSrc(ytJa) : ""
+      };
+    }
+
+    if (!isWorkerMode && filmEditions) {
       watchRoomState = "yt";
 
-      var ytEditions = { en: ytId, ja: ytIdJa || ytId };
-      var ytEmbedSrc = function (id) {
-        return (
-          "https://www.youtube-nocookie.com/embed/" +
-          id +
-          "?rel=0&modestbranding=1&playsinline=1"
-        );
-      };
+      var hasJaEdition = !!filmEditions.ja;
+      if (!hasJaEdition) filmEditions.ja = filmEditions.en;
       // Japanese visitors start on the original (no-subtitle) edition when available.
-      var startEdition = ytIdJa && currentLang === "ja" ? "ja" : "en";
+      var startEdition = hasJaEdition && currentLang === "ja" ? "ja" : "en";
 
       var screen = document.getElementById("watch-cinema-screen");
       var frame = null;
       if (screen) {
-        frame = document.createElement("iframe");
-        frame.src = ytEmbedSrc(ytEditions[startEdition]);
-        frame.title = "KINOBU — Full Film";
-        frame.allow =
-          "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen";
-        frame.allowFullscreen = true;
-        frame.referrerPolicy = "strict-origin-when-cross-origin";
+        frame = makePlayerFrame(filmEditions[startEdition], "KINOBU — Full Film");
         screen.insertBefore(frame, screen.firstChild);
       }
 
       var editionToggle = document.getElementById("film-edition-toggle");
-      if (editionToggle && ytIdJa && frame) {
+      if (editionToggle && hasJaEdition && frame) {
         var editionBtns = editionToggle.querySelectorAll("[data-film-ver]");
         var setEdition = function (ver) {
           for (var b = 0; b < editionBtns.length; b++) {
@@ -1045,7 +1131,7 @@
           editionBtns[e].addEventListener("click", function () {
             var ver = this.getAttribute("data-film-ver");
             if (this.classList.contains("is-active")) return;
-            frame.src = ytEmbedSrc(ytEditions[ver]);
+            frame.src = filmEditions[ver];
             setEdition(ver);
             trackEvent("film_edition_switched", {
               edition: ver === "ja" ? "ja_nosub" : "en_sub",
